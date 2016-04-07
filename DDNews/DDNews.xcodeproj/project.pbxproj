@@ -9,12 +9,14 @@
 /* Begin PBXBuildFile section */
 		340600F21CB62CEC000EECE4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 340600F11CB62CEC000EECE4 /* main.m */; };
 		340600F51CB62CEC000EECE4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 340600F41CB62CEC000EECE4 /* AppDelegate.m */; };
-		340600F81CB62CEC000EECE4 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 340600F71CB62CEC000EECE4 /* ViewController.m */; };
-		340600FB1CB62CEC000EECE4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 340600F91CB62CEC000EECE4 /* Main.storyboard */; };
 		340600FD1CB62CEC000EECE4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 340600FC1CB62CEC000EECE4 /* Assets.xcassets */; };
 		340601001CB62CEC000EECE4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 340600FE1CB62CEC000EECE4 /* LaunchScreen.storyboard */; };
 		3406010B1CB62CEC000EECE4 /* DDNewsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3406010A1CB62CEC000EECE4 /* DDNewsTests.m */; };
 		340601161CB62CEC000EECE4 /* DDNewsUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 340601151CB62CEC000EECE4 /* DDNewsUITests.m */; };
+		340601251CB62FAC000EECE4 /* DDNewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 340601241CB62FAC000EECE4 /* DDNewsViewController.m */; };
+		3406012A1CB635A4000EECE4 /* DDChannelModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 340601291CB635A4000EECE4 /* DDChannelModel.m */; };
+		3406012C1CB635EC000EECE4 /* topic_news.json in Resources */ = {isa = PBXBuildFile; fileRef = 3406012B1CB635EC000EECE4 /* topic_news.json */; };
+		340601301CB6397D000EECE4 /* DDChannelLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3406012F1CB6397D000EECE4 /* DDChannelLabel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,9 +41,6 @@
 		340600F11CB62CEC000EECE4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		340600F31CB62CEC000EECE4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		340600F41CB62CEC000EECE4 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		340600F61CB62CEC000EECE4 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		340600F71CB62CEC000EECE4 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		340600FA1CB62CEC000EECE4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		340600FC1CB62CEC000EECE4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		340600FF1CB62CEC000EECE4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		340601011CB62CEC000EECE4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -51,6 +50,13 @@
 		340601111CB62CEC000EECE4 /* DDNewsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DDNewsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		340601151CB62CEC000EECE4 /* DDNewsUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DDNewsUITests.m; sourceTree = "<group>"; };
 		340601171CB62CEC000EECE4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		340601231CB62FAC000EECE4 /* DDNewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDNewsViewController.h; sourceTree = "<group>"; };
+		340601241CB62FAC000EECE4 /* DDNewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDNewsViewController.m; sourceTree = "<group>"; };
+		340601281CB635A4000EECE4 /* DDChannelModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDChannelModel.h; sourceTree = "<group>"; };
+		340601291CB635A4000EECE4 /* DDChannelModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDChannelModel.m; sourceTree = "<group>"; };
+		3406012B1CB635EC000EECE4 /* topic_news.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = topic_news.json; sourceTree = "<group>"; };
+		3406012E1CB6397D000EECE4 /* DDChannelLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDChannelLabel.h; sourceTree = "<group>"; };
+		3406012F1CB6397D000EECE4 /* DDChannelLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDChannelLabel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,14 +107,10 @@
 		340600EF1CB62CEC000EECE4 /* DDNews */ = {
 			isa = PBXGroup;
 			children = (
+				3406012D1CB63656000EECE4 /* 框架 */,
+				340601261CB63560000EECE4 /* 新闻 */,
 				340600F31CB62CEC000EECE4 /* AppDelegate.h */,
 				340600F41CB62CEC000EECE4 /* AppDelegate.m */,
-				340600F61CB62CEC000EECE4 /* ViewController.h */,
-				340600F71CB62CEC000EECE4 /* ViewController.m */,
-				340600F91CB62CEC000EECE4 /* Main.storyboard */,
-				340600FC1CB62CEC000EECE4 /* Assets.xcassets */,
-				340600FE1CB62CEC000EECE4 /* LaunchScreen.storyboard */,
-				340601011CB62CEC000EECE4 /* Info.plist */,
 				340600F01CB62CEC000EECE4 /* Supporting Files */,
 			);
 			path = DDNews;
@@ -117,6 +119,10 @@
 		340600F01CB62CEC000EECE4 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				3406012B1CB635EC000EECE4 /* topic_news.json */,
+				340600FC1CB62CEC000EECE4 /* Assets.xcassets */,
+				340600FE1CB62CEC000EECE4 /* LaunchScreen.storyboard */,
+				340601011CB62CEC000EECE4 /* Info.plist */,
 				340600F11CB62CEC000EECE4 /* main.m */,
 			);
 			name = "Supporting Files";
@@ -138,6 +144,34 @@
 				340601171CB62CEC000EECE4 /* Info.plist */,
 			);
 			path = DDNewsUITests;
+			sourceTree = "<group>";
+		};
+		340601261CB63560000EECE4 /* 新闻 */ = {
+			isa = PBXGroup;
+			children = (
+				340601231CB62FAC000EECE4 /* DDNewsViewController.h */,
+				340601241CB62FAC000EECE4 /* DDNewsViewController.m */,
+				340601271CB6358B000EECE4 /* 频道/分类 */,
+			);
+			name = "新闻";
+			sourceTree = "<group>";
+		};
+		340601271CB6358B000EECE4 /* 频道/分类 */ = {
+			isa = PBXGroup;
+			children = (
+				340601281CB635A4000EECE4 /* DDChannelModel.h */,
+				340601291CB635A4000EECE4 /* DDChannelModel.m */,
+				3406012E1CB6397D000EECE4 /* DDChannelLabel.h */,
+				3406012F1CB6397D000EECE4 /* DDChannelLabel.m */,
+			);
+			name = "频道/分类";
+			sourceTree = "<group>";
+		};
+		3406012D1CB63656000EECE4 /* 框架 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "框架";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -246,9 +280,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3406012C1CB635EC000EECE4 /* topic_news.json in Resources */,
 				340601001CB62CEC000EECE4 /* LaunchScreen.storyboard in Resources */,
 				340600FD1CB62CEC000EECE4 /* Assets.xcassets in Resources */,
-				340600FB1CB62CEC000EECE4 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -273,7 +307,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				340600F81CB62CEC000EECE4 /* ViewController.m in Sources */,
+				340601251CB62FAC000EECE4 /* DDNewsViewController.m in Sources */,
+				3406012A1CB635A4000EECE4 /* DDChannelModel.m in Sources */,
+				340601301CB6397D000EECE4 /* DDChannelLabel.m in Sources */,
 				340600F51CB62CEC000EECE4 /* AppDelegate.m in Sources */,
 				340600F21CB62CEC000EECE4 /* main.m in Sources */,
 			);
@@ -311,14 +347,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		340600F91CB62CEC000EECE4 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				340600FA1CB62CEC000EECE4 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		340600FE1CB62CEC000EECE4 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -499,6 +527,7 @@
 				3406011C1CB62CEC000EECE4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3406011D1CB62CEC000EECE4 /* Build configuration list for PBXNativeTarget "DDNewsTests" */ = {
 			isa = XCConfigurationList;
@@ -507,6 +536,7 @@
 				3406011F1CB62CEC000EECE4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		340601201CB62CEC000EECE4 /* Build configuration list for PBXNativeTarget "DDNewsUITests" */ = {
 			isa = XCConfigurationList;
@@ -515,6 +545,7 @@
 				340601221CB62CEC000EECE4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

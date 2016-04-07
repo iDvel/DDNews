@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  DDChannelLabel.h
 //  DDNews
 //
 //  Created by Dvel on 16/4/7.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-
-
+@interface DDChannelLabel : UILabel
++ (instancetype)channelLabelWithTitle:(NSString *)title;
 @end
-

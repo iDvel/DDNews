@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "DDNewsViewController.h"
 
 @interface AppDelegate ()
 
@@ -16,7 +17,20 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-	// Override point for customization after application launch.
+	self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+	[self.window makeKeyAndVisible];
+	
+	UINavigationController *navC1 = [[UINavigationController alloc] initWithRootViewController:[DDNewsViewController new]];
+	UINavigationController *navC2 = [[UINavigationController alloc] initWithRootViewController:[UIViewController new]];
+	
+	UITabBarController *tabbarC = [[UITabBarController alloc] init];
+	self.window.rootViewController = tabbarC;
+	[tabbarC addChildViewController:navC1];
+	[tabbarC addChildViewController:navC2];
+	
+	navC1.title = @"新闻";
+	navC2.title = @"啦啦啦";
+	
 	return YES;
 }
 
