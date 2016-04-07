@@ -48,7 +48,6 @@
 
 - (NSString *)description {
 	NSDictionary *dict = [self dictionaryWithValuesForKeys:@[@"tname", @"tid"]];
-	
 	return [NSString stringWithFormat:@"<%@: %p> %@", self.class, self, dict];
 }
 

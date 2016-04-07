@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface DDChannelLabel : UILabel
+
 + (instancetype)channelLabelWithTitle:(NSString *)title;
+
 @end

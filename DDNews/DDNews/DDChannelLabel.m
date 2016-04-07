@@ -21,4 +21,10 @@
 	return label;
 }
 
+- (NSString *)description
+{
+//	NSDictionary *dict = [self dictionaryWithValuesForKeys:@[]];
+	return [NSString stringWithFormat:@"<%@: %p> %@", self.class, self, self.text];
+}
+
 @end

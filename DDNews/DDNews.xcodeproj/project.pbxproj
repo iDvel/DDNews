@@ -17,6 +17,7 @@
 		3406012A1CB635A4000EECE4 /* DDChannelModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 340601291CB635A4000EECE4 /* DDChannelModel.m */; };
 		3406012C1CB635EC000EECE4 /* topic_news.json in Resources */ = {isa = PBXBuildFile; fileRef = 3406012B1CB635EC000EECE4 /* topic_news.json */; };
 		340601301CB6397D000EECE4 /* DDChannelLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3406012F1CB6397D000EECE4 /* DDChannelLabel.m */; };
+		340601371CB68DAB000EECE4 /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 340601361CB68DAB000EECE4 /* UIView+Extension.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,8 @@
 		3406012B1CB635EC000EECE4 /* topic_news.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = topic_news.json; sourceTree = "<group>"; };
 		3406012E1CB6397D000EECE4 /* DDChannelLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDChannelLabel.h; sourceTree = "<group>"; };
 		3406012F1CB6397D000EECE4 /* DDChannelLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDChannelLabel.m; sourceTree = "<group>"; };
+		340601351CB68DAB000EECE4 /* UIView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Extension.h"; sourceTree = "<group>"; };
+		340601361CB68DAB000EECE4 /* UIView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extension.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,7 +110,7 @@
 		340600EF1CB62CEC000EECE4 /* DDNews */ = {
 			isa = PBXGroup;
 			children = (
-				3406012D1CB63656000EECE4 /* 框架 */,
+				3406012D1CB63656000EECE4 /* 其他 */,
 				340601261CB63560000EECE4 /* 新闻 */,
 				340600F31CB62CEC000EECE4 /* AppDelegate.h */,
 				340600F41CB62CEC000EECE4 /* AppDelegate.m */,
@@ -167,11 +170,13 @@
 			name = "频道/分类";
 			sourceTree = "<group>";
 		};
-		3406012D1CB63656000EECE4 /* 框架 */ = {
+		3406012D1CB63656000EECE4 /* 其他 */ = {
 			isa = PBXGroup;
 			children = (
+				340601351CB68DAB000EECE4 /* UIView+Extension.h */,
+				340601361CB68DAB000EECE4 /* UIView+Extension.m */,
 			);
-			name = "框架";
+			name = "其他";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -307,6 +312,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				340601371CB68DAB000EECE4 /* UIView+Extension.m in Sources */,
 				340601251CB62FAC000EECE4 /* DDNewsViewController.m in Sources */,
 				3406012A1CB635A4000EECE4 /* DDChannelModel.m in Sources */,
 				340601301CB6397D000EECE4 /* DDChannelLabel.m in Sources */,
