@@ -21,9 +21,23 @@
 	return label;
 }
 
+- (CGFloat)textWidth
+{
+	return [self.text sizeWithAttributes:@{NSFontAttributeName:self.font}].width + 8; // +8，要不太窄
+}
+
+
+- (void)setScale:(CGFloat)scale
+{
+	_scale = scale;
+
+	self.textColor = [UIColor colorWithRed:scale*0.176 green:scale*0.722 blue:scale*0.945 alpha:1];
+}
+
+
+
 - (NSString *)description
 {
-//	NSDictionary *dict = [self dictionaryWithValuesForKeys:@[]];
 	return [NSString stringWithFormat:@"<%@: %p> %@", self.class, self, self.text];
 }
 

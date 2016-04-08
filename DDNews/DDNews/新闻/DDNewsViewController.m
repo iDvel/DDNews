@@ -54,6 +54,7 @@ static NSString * const reuseID  = @"DDChannelCell";
 	[self.view addSubview:self.bigCollectionView];
 }
 
+
 #pragma mark - UICollectionViewDataSource
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
@@ -68,8 +69,42 @@ static NSString * const reuseID  = @"DDChannelCell";
 	return cell;
 }
 
+
 #pragma mark - UICollectionViewDelegate
-/** 手指滑动BigCollectionView */
+/** 正在滚动 */
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+	// 取出绝对值 避免最左边往右拉时形变超过1
+	CGFloat value = ABS(scrollView.contentOffset.x / scrollView.frame.size.width);
+	NSUInteger leftIndex = (int)value;
+	NSUInteger rightIndex = leftIndex + 1;
+	if (rightIndex >= [self getLabelArrayFromSubviews].count) {  // 防止滑到最右，再滑，数组越界，从而崩溃
+		rightIndex = [self getLabelArrayFromSubviews].count - 1;
+	}
+	CGFloat scaleRight = value - leftIndex;
+	CGFloat scaleLeft  = 1 - scaleRight;
+	
+	DDChannelLabel *labelLeft  = [self getLabelArrayFromSubviews][leftIndex];
+	DDChannelLabel *labelRight = [self getLabelArrayFromSubviews][rightIndex];
+
+	labelLeft.scale  = scaleLeft;
+	labelRight.scale = scaleRight;
+	
+//	 NSLog(@"value = %f leftIndex = %zd, rightIndex = %zd", value, leftIndex, rightIndex);
+//	 NSLog(@"左%f 右%f", scaleLeft, scaleRight);
+//	 NSLog(@"左：%@ 右：%@", labelLeft.text, labelRight.text);
+	
+	// 点击label会调用此方法1次，会导致【scrollViewDidEndScrollingAnimation】方法中的动画失效，这时直接return。
+	if (scaleLeft == 1 && scaleRight == 0) {
+		return;
+	}
+	
+	// 下划线动态跟随滚动：马勒戈壁的可算让我算出来了
+    _underline.centerX = labelLeft.centerX   + (labelRight.centerX   - labelLeft.centerX)   * scaleRight;
+    _underline.width   = labelLeft.textWidth + (labelRight.textWidth - labelLeft.textWidth) * scaleRight;
+}
+
+/** 手指滑动BigCollectionView，滑动结束后调用 */
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
 	if ([scrollView isEqual:self.bigCollectionView]) {
@@ -96,8 +131,8 @@ static NSString * const reuseID  = @"DDChannelCell";
 		label.textColor = [UIColor blackColor];
 	}
 	// 下划线滚动并着色
-	[UIView animateWithDuration:0.25 animations:^{
-		_underline.width = [titleLable.text sizeWithAttributes:@{NSFontAttributeName:titleLable.font}].width+16;
+	[UIView animateWithDuration:0.3 animations:^{
+		_underline.width = titleLable.textWidth;
 		_underline.centerX = titleLable.centerX;
 		titleLable.textColor = AppColor;
 	}];
@@ -128,10 +163,9 @@ static NSString * const reuseID  = @"DDChannelCell";
 		// 设置下划线
 		[_smallScrollView addSubview:({
 			DDChannelLabel *firstLabel = [self getLabelArrayFromSubviews][0];
-			// 获得label的宽度
-			CGSize size = [firstLabel.text sizeWithAttributes:@{NSFontAttributeName:firstLabel.font}];
-			// smallScrollView高度44，取下面4个点的高度为下划线的高度。16为魔法数字，增加些宽度，看着合适来的。
-			_underline = [[UIView alloc] initWithFrame:CGRectMake(firstLabel.x, 40, size.width+16, 4)];
+			// smallScrollView高度44，取下面4个点的高度为下划线的高度。
+			_underline = [[UIView alloc] initWithFrame:CGRectMake(0, 40, firstLabel.textWidth, 4)];
+			_underline.centerX = firstLabel.centerX;
 			_underline.backgroundColor = AppColor;
 			_underline;
 		})];
@@ -188,8 +222,7 @@ static NSString * const reuseID  = @"DDChannelCell";
 {
 	DDChannelLabel *label = (DDChannelLabel *)recognizer.view;
 	// 点击label后，让bigCollectionView滚到对应位置。
-	CGFloat offsetX = label.tag * _bigCollectionView.frame.size.width;
-	[_bigCollectionView setContentOffset:CGPointMake(offsetX, 0)];
+	[_bigCollectionView setContentOffset:CGPointMake(label.tag * _bigCollectionView.frame.size.width, 0)];
 	// 重新调用一下滚定停止方法，让label的着色和下划线到正确的位置。
 	[self scrollViewDidEndScrollingAnimation:self.bigCollectionView];
 }

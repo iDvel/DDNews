@@ -10,6 +10,9 @@
 
 @interface DDChannelLabel : UILabel
 
+@property (nonatomic, assign) CGFloat scale;
+@property (nonatomic, assign) CGFloat textWidth;
+
 + (instancetype)channelLabelWithTitle:(NSString *)title;
 
 @end
