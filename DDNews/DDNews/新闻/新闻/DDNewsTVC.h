@@ -10,4 +10,6 @@
 
 @interface DDNewsTVC : UITableViewController
 
+@property (nonatomic, copy) NSString *urlString;
+
 @end

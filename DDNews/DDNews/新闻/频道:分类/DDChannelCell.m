@@ -17,11 +17,7 @@
 {
 	self = [super initWithFrame:frame];
 	if (self) {
-		
 		NSLog(@"%s", __func__);
-		
-		
-		
 	}
 	return self;
 }
@@ -30,33 +26,11 @@
 {
 	_urlString = urlString;
 	
-	DDNewsTVC *newsTVC = [[DDNewsTVC alloc] init];
-	newsTVC.view.frame = self.bounds;
-	[self addSubview:newsTVC.view];
+	UIStoryboard *sb = [UIStoryboard storyboardWithName:@"DDNewsTVC" bundle:nil];
+	_newsTVC = [sb instantiateInitialViewController];
+	_newsTVC.view.frame = self.bounds;
+	_newsTVC.urlString = urlString;
+	[self addSubview:_newsTVC.view];
 }
-
-//- (void)setTname:(NSString *)tname
-//{
-//	_tname = tname;
-//
-//	[self addSubview:({
-//		UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(100, 100, 100, 100)];
-//		label.text = self.tname;
-//		NSLog(@"~~~r%@", self.tname);
-//		[label sizeToFit];
-//		label.centerX = self.centerX;
-//		label.centerY = self.centerY;
-//		label.textColor = [UIColor blackColor];
-//		label;
-//	})];
-//
-//	
-//	[self addSubview:({
-//		UIView *view = [[UIView alloc] initWithFrame:CGRectMake(10, 10, 50, 50)];
-//		view.backgroundColor = [UIColor colorWithRed:((float)arc4random_uniform(256) / 255.0) green:((float)arc4random_uniform(256) / 255.0) blue:((float)arc4random_uniform(256) / 255.0) alpha:1.0];
-//		view;
-//	})];
-//}
-
 
 @end

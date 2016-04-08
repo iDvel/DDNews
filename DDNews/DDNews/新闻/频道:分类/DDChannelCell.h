@@ -13,6 +13,6 @@
 @interface DDChannelCell : UICollectionViewCell
 
 @property (nonatomic, strong) DDNewsTVC *newsTVC;
-@property (nonatomic, copy) NSString *urlString;
+@property (nonatomic, copy  ) NSString  *urlString;
 
 @end
