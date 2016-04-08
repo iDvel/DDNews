@@ -74,13 +74,15 @@ static NSString * const reuseID  = @"DDChannelCell";
 /** 正在滚动 */
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-	// 取出绝对值 避免最左边往右拉时形变超过1
-	CGFloat value = ABS(scrollView.contentOffset.x / scrollView.frame.size.width);
+	CGFloat value = scrollView.contentOffset.x / scrollView.frame.size.width;
+	if (value < 0) {return;} // 防止在最左侧的时候，再滑，下划线位置会偏移，颜色渐变会混乱。
+	
 	NSUInteger leftIndex = (int)value;
 	NSUInteger rightIndex = leftIndex + 1;
 	if (rightIndex >= [self getLabelArrayFromSubviews].count) {  // 防止滑到最右，再滑，数组越界，从而崩溃
 		rightIndex = [self getLabelArrayFromSubviews].count - 1;
 	}
+	
 	CGFloat scaleRight = value - leftIndex;
 	CGFloat scaleLeft  = 1 - scaleRight;
 	
@@ -163,6 +165,7 @@ static NSString * const reuseID  = @"DDChannelCell";
 		// 设置下划线
 		[_smallScrollView addSubview:({
 			DDChannelLabel *firstLabel = [self getLabelArrayFromSubviews][0];
+			firstLabel.textColor = AppColor;
 			// smallScrollView高度44，取下面4个点的高度为下划线的高度。
 			_underline = [[UIView alloc] initWithFrame:CGRectMake(0, 40, firstLabel.textWidth, 4)];
 			_underline.centerX = firstLabel.centerX;
