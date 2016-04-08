@@ -285,10 +285,10 @@
 			children = (
 				3406014B1CB76700000EECE4 /* UIView+Extension.h */,
 				3406014C1CB76700000EECE4 /* UIView+Extension.m */,
-				3406015C1CB78337000EECE4 /* AFNetworking */,
-				340601901CB7A347000EECE4 /* SDWebImage */,
 				340601761CB783C5000EECE4 /* DDNetworkTool.h */,
 				340601771CB783C5000EECE4 /* DDNetworkTool.m */,
+				3406015C1CB78337000EECE4 /* AFNetworking */,
+				340601901CB7A347000EECE4 /* SDWebImage */,
 				340601791CB79EAF000EECE4 /* SDCycleScrollView */,
 			);
 			path = "其他";

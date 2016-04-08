@@ -45,8 +45,9 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	DDNewsModel *newsModel = self.dataList[indexPath.row];
-	DDNewsCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NewsCycleImageCell" forIndexPath:indexPath];
+	DDNewsCell *cell = [tableView dequeueReusableCellWithIdentifier:[DDNewsCell cellReuseID:newsModel] forIndexPath:indexPath];
 	cell.newsModel = newsModel;
+	[self setupCycleImageClickWithCell:cell newsModel:newsModel];
     return cell;
 }
 
@@ -61,5 +62,15 @@
 {
 	NSLog(@"%s", __func__);
 }
+
+#pragma mark -
+/** 轮播点击事件 */
+- (void)setupCycleImageClickWithCell:(DDNewsCell *)cell newsModel:(DDNewsModel *)newsModel
+{
+	cell.cycleImageClickBlock = ^(NSInteger idx){
+		NSLog(@"%zd", idx);
+	};
+}
+
 
 @end
