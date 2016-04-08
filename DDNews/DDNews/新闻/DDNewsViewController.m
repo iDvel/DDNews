@@ -9,6 +9,7 @@
 #import "DDNewsViewController.h"
 #import "DDChannelModel.h"
 #import "DDChannelLabel.h"
+#import "DDChannelCell.h"
 
 #import "UIView+Extension.h"
 
@@ -61,8 +62,9 @@ static NSString * const reuseID  = @"DDChannelCell";
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-	UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseID forIndexPath:indexPath];
-	cell.backgroundColor = [UIColor colorWithRed:((float)arc4random_uniform(256) / 255.0) green:((float)arc4random_uniform(256) / 255.0) blue:((float)arc4random_uniform(256) / 255.0) alpha:1.0];
+	DDChannelCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseID forIndexPath:indexPath];
+	DDChannelModel *channel = _list_now[indexPath.row];
+	cell.urlString = channel.urlString;
 	return cell;
 }
 
@@ -148,8 +150,8 @@ static NSString * const reuseID  = @"DDChannelCell";
 		_bigCollectionView.backgroundColor = [UIColor whiteColor];
 		_bigCollectionView.delegate = self;
 		_bigCollectionView.dataSource = self;
-//		[_bigCollectionView registerClass:[DDChannelCell class] forCellWithReuseIdentifier:reuseID];
-		[_bigCollectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:reuseID];
+		[_bigCollectionView registerClass:[DDChannelCell class] forCellWithReuseIdentifier:reuseID];
+		
 		// 设置cell的大小和细节
 		flowLayout.itemSize = _bigCollectionView.bounds.size;
 		flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
@@ -173,7 +175,7 @@ static NSString * const reuseID  = @"DDChannelCell";
 		DDChannelLabel *label = [DDChannelLabel channelLabelWithTitle:channel.tname];
 		label.frame = CGRectMake(x, 0, label.width + margin, h);
 		[_smallScrollView addSubview:label];
-		NSLog(@"~%@", NSStringFromCGRect(label.frame));
+		
 		x += label.bounds.size.width;
 		label.tag = i++;
 		[label addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(labelClick:)]];

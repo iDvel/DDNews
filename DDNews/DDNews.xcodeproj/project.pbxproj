@@ -13,11 +13,13 @@
 		340601001CB62CEC000EECE4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 340600FE1CB62CEC000EECE4 /* LaunchScreen.storyboard */; };
 		3406010B1CB62CEC000EECE4 /* DDNewsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3406010A1CB62CEC000EECE4 /* DDNewsTests.m */; };
 		340601161CB62CEC000EECE4 /* DDNewsUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 340601151CB62CEC000EECE4 /* DDNewsUITests.m */; };
-		340601251CB62FAC000EECE4 /* DDNewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 340601241CB62FAC000EECE4 /* DDNewsViewController.m */; };
-		3406012A1CB635A4000EECE4 /* DDChannelModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 340601291CB635A4000EECE4 /* DDChannelModel.m */; };
 		3406012C1CB635EC000EECE4 /* topic_news.json in Resources */ = {isa = PBXBuildFile; fileRef = 3406012B1CB635EC000EECE4 /* topic_news.json */; };
-		340601301CB6397D000EECE4 /* DDChannelLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3406012F1CB6397D000EECE4 /* DDChannelLabel.m */; };
-		340601371CB68DAB000EECE4 /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 340601361CB68DAB000EECE4 /* UIView+Extension.m */; };
+		340601461CB766AC000EECE4 /* DDNewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3406013E1CB766AC000EECE4 /* DDNewsViewController.m */; };
+		340601471CB766AC000EECE4 /* DDChannelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 340601411CB766AC000EECE4 /* DDChannelCell.m */; };
+		340601481CB766AC000EECE4 /* DDChannelLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 340601431CB766AC000EECE4 /* DDChannelLabel.m */; };
+		340601491CB766AC000EECE4 /* DDChannelModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 340601451CB766AC000EECE4 /* DDChannelModel.m */; };
+		3406014D1CB76700000EECE4 /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 3406014C1CB76700000EECE4 /* UIView+Extension.m */; };
+		340601511CB76738000EECE4 /* DDNewsTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 340601501CB76738000EECE4 /* DDNewsTVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,15 +53,19 @@
 		340601111CB62CEC000EECE4 /* DDNewsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DDNewsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		340601151CB62CEC000EECE4 /* DDNewsUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DDNewsUITests.m; sourceTree = "<group>"; };
 		340601171CB62CEC000EECE4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		340601231CB62FAC000EECE4 /* DDNewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDNewsViewController.h; sourceTree = "<group>"; };
-		340601241CB62FAC000EECE4 /* DDNewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDNewsViewController.m; sourceTree = "<group>"; };
-		340601281CB635A4000EECE4 /* DDChannelModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDChannelModel.h; sourceTree = "<group>"; };
-		340601291CB635A4000EECE4 /* DDChannelModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDChannelModel.m; sourceTree = "<group>"; };
 		3406012B1CB635EC000EECE4 /* topic_news.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = topic_news.json; sourceTree = "<group>"; };
-		3406012E1CB6397D000EECE4 /* DDChannelLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDChannelLabel.h; sourceTree = "<group>"; };
-		3406012F1CB6397D000EECE4 /* DDChannelLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDChannelLabel.m; sourceTree = "<group>"; };
-		340601351CB68DAB000EECE4 /* UIView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Extension.h"; sourceTree = "<group>"; };
-		340601361CB68DAB000EECE4 /* UIView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extension.m"; sourceTree = "<group>"; };
+		3406013D1CB766AC000EECE4 /* DDNewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDNewsViewController.h; sourceTree = "<group>"; };
+		3406013E1CB766AC000EECE4 /* DDNewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDNewsViewController.m; sourceTree = "<group>"; };
+		340601401CB766AC000EECE4 /* DDChannelCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDChannelCell.h; sourceTree = "<group>"; };
+		340601411CB766AC000EECE4 /* DDChannelCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDChannelCell.m; sourceTree = "<group>"; };
+		340601421CB766AC000EECE4 /* DDChannelLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDChannelLabel.h; sourceTree = "<group>"; };
+		340601431CB766AC000EECE4 /* DDChannelLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDChannelLabel.m; sourceTree = "<group>"; };
+		340601441CB766AC000EECE4 /* DDChannelModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDChannelModel.h; sourceTree = "<group>"; };
+		340601451CB766AC000EECE4 /* DDChannelModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDChannelModel.m; sourceTree = "<group>"; };
+		3406014B1CB76700000EECE4 /* UIView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Extension.h"; sourceTree = "<group>"; };
+		3406014C1CB76700000EECE4 /* UIView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extension.m"; sourceTree = "<group>"; };
+		3406014F1CB76738000EECE4 /* DDNewsTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDNewsTVC.h; sourceTree = "<group>"; };
+		340601501CB76738000EECE4 /* DDNewsTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDNewsTVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,8 +116,8 @@
 		340600EF1CB62CEC000EECE4 /* DDNews */ = {
 			isa = PBXGroup;
 			children = (
-				3406012D1CB63656000EECE4 /* 其他 */,
-				340601261CB63560000EECE4 /* 新闻 */,
+				3406014A1CB76700000EECE4 /* 其他 */,
+				3406013C1CB766AC000EECE4 /* 新闻 */,
 				340600F31CB62CEC000EECE4 /* AppDelegate.h */,
 				340600F41CB62CEC000EECE4 /* AppDelegate.m */,
 				340600F01CB62CEC000EECE4 /* Supporting Files */,
@@ -149,34 +155,47 @@
 			path = DDNewsUITests;
 			sourceTree = "<group>";
 		};
-		340601261CB63560000EECE4 /* 新闻 */ = {
+		3406013C1CB766AC000EECE4 /* 新闻 */ = {
 			isa = PBXGroup;
 			children = (
-				340601231CB62FAC000EECE4 /* DDNewsViewController.h */,
-				340601241CB62FAC000EECE4 /* DDNewsViewController.m */,
-				340601271CB6358B000EECE4 /* 频道/分类 */,
+				3406013D1CB766AC000EECE4 /* DDNewsViewController.h */,
+				3406013E1CB766AC000EECE4 /* DDNewsViewController.m */,
+				3406013F1CB766AC000EECE4 /* 频道/分类 */,
+				3406014E1CB7671A000EECE4 /* 新闻 */,
 			);
-			name = "新闻";
+			path = "新闻";
 			sourceTree = "<group>";
 		};
-		340601271CB6358B000EECE4 /* 频道/分类 */ = {
+		3406013F1CB766AC000EECE4 /* 频道/分类 */ = {
 			isa = PBXGroup;
 			children = (
-				340601281CB635A4000EECE4 /* DDChannelModel.h */,
-				340601291CB635A4000EECE4 /* DDChannelModel.m */,
-				3406012E1CB6397D000EECE4 /* DDChannelLabel.h */,
-				3406012F1CB6397D000EECE4 /* DDChannelLabel.m */,
+				340601401CB766AC000EECE4 /* DDChannelCell.h */,
+				340601411CB766AC000EECE4 /* DDChannelCell.m */,
+				340601421CB766AC000EECE4 /* DDChannelLabel.h */,
+				340601431CB766AC000EECE4 /* DDChannelLabel.m */,
+				340601441CB766AC000EECE4 /* DDChannelModel.h */,
+				340601451CB766AC000EECE4 /* DDChannelModel.m */,
 			);
 			name = "频道/分类";
+			path = "频道:分类";
 			sourceTree = "<group>";
 		};
-		3406012D1CB63656000EECE4 /* 其他 */ = {
+		3406014A1CB76700000EECE4 /* 其他 */ = {
 			isa = PBXGroup;
 			children = (
-				340601351CB68DAB000EECE4 /* UIView+Extension.h */,
-				340601361CB68DAB000EECE4 /* UIView+Extension.m */,
+				3406014B1CB76700000EECE4 /* UIView+Extension.h */,
+				3406014C1CB76700000EECE4 /* UIView+Extension.m */,
 			);
-			name = "其他";
+			path = "其他";
+			sourceTree = "<group>";
+		};
+		3406014E1CB7671A000EECE4 /* 新闻 */ = {
+			isa = PBXGroup;
+			children = (
+				3406014F1CB76738000EECE4 /* DDNewsTVC.h */,
+				340601501CB76738000EECE4 /* DDNewsTVC.m */,
+			);
+			path = "新闻";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -312,10 +331,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				340601371CB68DAB000EECE4 /* UIView+Extension.m in Sources */,
-				340601251CB62FAC000EECE4 /* DDNewsViewController.m in Sources */,
-				3406012A1CB635A4000EECE4 /* DDChannelModel.m in Sources */,
-				340601301CB6397D000EECE4 /* DDChannelLabel.m in Sources */,
+				340601511CB76738000EECE4 /* DDNewsTVC.m in Sources */,
+				340601471CB766AC000EECE4 /* DDChannelCell.m in Sources */,
+				340601481CB766AC000EECE4 /* DDChannelLabel.m in Sources */,
+				340601491CB766AC000EECE4 /* DDChannelModel.m in Sources */,
+				3406014D1CB76700000EECE4 /* UIView+Extension.m in Sources */,
+				340601461CB766AC000EECE4 /* DDNewsViewController.m in Sources */,
 				340600F51CB62CEC000EECE4 /* AppDelegate.m in Sources */,
 				340600F21CB62CEC000EECE4 /* main.m in Sources */,
 			);
