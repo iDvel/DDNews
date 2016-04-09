@@ -33,7 +33,7 @@
 	
 	[self setupCycleImageCell:newsModel];
 	
-	[self.iconImage sd_setImageWithURL:[NSURL URLWithString:newsModel.imgsrc] placeholderImage:[UIImage imageNamed:@"placeholder_cycleImage"]];
+	[self.iconImage sd_setImageWithURL:[NSURL URLWithString:newsModel.imgsrc] placeholderImage:[UIImage imageNamed:@"placeholder_small"]];
 	self.titleLabel.text = newsModel.title;
 	self.digestLabel.text = newsModel.digest;
 	//	self.replyLabel.text = [NSString stringWithFormat:@"%zd", newsModel.replyCount];
@@ -47,7 +47,7 @@
 	if (newsModel.imgextra.count == 2) {
 		for (int i = 0; i < 2; i++) {
 			UIImageView *imageView = self.imgextras[i];
-			[imageView sd_setImageWithURL:[NSURL URLWithString:newsModel.imgextra[i][@"imgsrc"]] placeholderImage:[UIImage imageNamed:@"placeholder_cycleImage"]];
+			[imageView sd_setImageWithURL:[NSURL URLWithString:newsModel.imgextra[i][@"imgsrc"]] placeholderImage:[UIImage imageNamed:@"placeholder_small"]];
 		}
 	}
 
@@ -58,7 +58,7 @@
 - (void)setupCycleImageCell:(DDNewsModel *)newsModel
 {
 	// 网络加载 --- 创建带标题的图片轮播器
-	SDCycleScrollView *cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:self.cycleImageView.bounds delegate:nil placeholderImage:[UIImage imageNamed:@"placeholder_cycleImage"]];
+	SDCycleScrollView *cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:self.cycleImageView.bounds delegate:nil placeholderImage:[UIImage imageNamed:@"placeholder_big"]];
 	cycleScrollView.pageControlAliment = SDCycleScrollViewPageContolAlimentRight;
 	cycleScrollView.currentPageDotColor = [UIColor whiteColor];
 	

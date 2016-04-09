@@ -14,6 +14,8 @@
 #import "UIView+Extension.h"
 
 #define AppColor [UIColor colorWithRed:0.00392 green:0.576 blue:0.871 alpha:1]
+#define ScrW [UIScreen mainScreen].bounds.size.width
+#define ScrH [UIScreen mainScreen].bounds.size.height
 
 static NSString * const reuseID  = @"DDChannelCell";
 
@@ -31,7 +33,8 @@ static NSString * const reuseID  = @"DDChannelCell";
 @property (nonatomic, strong) UICollectionView *bigCollectionView;
 /** 下划线 */
 @property (nonatomic, strong) UIView *underline;
-
+/** 右侧添加删除排序按钮 */
+@property (nonatomic, strong) UIButton *sortButton;
 @end
 
 @implementation DDNewsViewController
@@ -52,6 +55,7 @@ static NSString * const reuseID  = @"DDChannelCell";
     [super viewDidLoad];
 	[self.view addSubview:self.smallScrollView];
 	[self.view addSubview:self.bigCollectionView];
+	[self.view addSubview:self.sortButton];
 }
 
 
@@ -154,14 +158,12 @@ static NSString * const reuseID  = @"DDChannelCell";
 - (UIScrollView *)smallScrollView
 {
 	if (_smallScrollView == nil) {
-		_smallScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 64, [UIScreen mainScreen].bounds.size.width, 44)];
+		_smallScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 64, ScrW, 44)];
 		_smallScrollView.backgroundColor = [UIColor whiteColor];
 		_smallScrollView.showsHorizontalScrollIndicator = NO;
-		
 		// 设置频道
 		_list_now = self.channelList.copy;
 		[self setupChannelLabel];
-		
 		// 设置下划线
 		[_smallScrollView addSubview:({
 			DDChannelLabel *firstLabel = [self getLabelArrayFromSubviews][0];
@@ -180,8 +182,8 @@ static NSString * const reuseID  = @"DDChannelCell";
 {
 	if (_bigCollectionView == nil) {
 		// 高度 = 屏幕高度 - 导航栏高度64 - 频道视图高度44
-		CGFloat h = [UIScreen mainScreen].bounds.size.height - 64 - self.smallScrollView.height ;
-		CGRect frame = CGRectMake(0, self.smallScrollView.maxY, [UIScreen mainScreen].bounds.size.width, h);
+		CGFloat h = ScrH - 64 - self.smallScrollView.height ;
+		CGRect frame = CGRectMake(0, self.smallScrollView.maxY, ScrW, h);
 		UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
 		_bigCollectionView = [[UICollectionView alloc] initWithFrame:frame collectionViewLayout:flowLayout];
 		_bigCollectionView.backgroundColor = [UIColor whiteColor];
@@ -198,6 +200,22 @@ static NSString * const reuseID  = @"DDChannelCell";
 		_bigCollectionView.showsHorizontalScrollIndicator = NO;
 	}
 	return _bigCollectionView;
+}
+
+- (UIButton *)sortButton
+{
+	if (_sortButton == nil) {
+		_sortButton = [[UIButton alloc] initWithFrame:CGRectMake(ScrW-44, 64, 44, 44)];
+		[_sortButton setImage:[UIImage imageNamed:@"ks_home_plus"] forState:UIControlStateNormal];
+		_sortButton.backgroundColor = [UIColor whiteColor];
+		_sortButton.layer.shadowColor = [UIColor whiteColor].CGColor;
+		_sortButton.layer.shadowOpacity = 0.8;
+		_sortButton.layer.shadowRadius = 5;
+		_sortButton.layer.shadowOffset = CGSizeMake(-5, 0);
+		
+		[_sortButton addTarget:self action:@selector(sortButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+	}
+	return _sortButton;
 }
 
 #pragma mark - 
@@ -217,7 +235,7 @@ static NSString * const reuseID  = @"DDChannelCell";
 		label.tag = i++;
 		[label addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(labelClick:)]];
 	}
-	_smallScrollView.contentSize = CGSizeMake(x + margin + 0, 0);
+	_smallScrollView.contentSize = CGSizeMake(x + margin + self.sortButton.width, 0);
 }
 
 /** 频道Label点击事件 */
@@ -242,4 +260,45 @@ static NSString * const reuseID  = @"DDChannelCell";
 	return arrayM.copy;
 }
 
+- (void)sortButtonClick:(UIButton *)sender
+{
+	UIView *view = [[UIView alloc] initWithFrame:_smallScrollView.frame];
+	view.backgroundColor = [UIColor blueColor];
+	view.width = 0;
+	[self.view addSubview:view];
+	
+	UIView *sortView = [[UIView alloc] initWithFrame:_bigCollectionView.frame];
+	sortView.backgroundColor = [UIColor orangeColor];
+	sortView.height = 0;
+	[self.view addSubview:sortView];
+	
+	[UIView animateWithDuration:3 animations:^{
+		view.width = _smallScrollView.width;
+		sortView.height = _bigCollectionView.height;
+		self.tabBarController.tabBar.y = 999;
+	}];
+}
+
 @end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
