@@ -16,11 +16,15 @@
 @interface DDNewsCell () <SDCycleScrollViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIView *cycleImageView;
-@property (weak, nonatomic) IBOutlet UIImageView *iconImage;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *digestLabel;
 @property (weak, nonatomic) IBOutlet UILabel *replyLabel;
+/** 左图右字的单个图片，三图中的第一个图片 */
+@property (weak, nonatomic) IBOutlet UIImageView *iconImage;
+/** 三图：其余两张图片 */
 @property (strong, nonatomic) IBOutletCollection(UIImageView) NSArray *imgextras;
+/** 大图：区分开，为了给大图设置不同的placeholder */
+@property (weak, nonatomic) IBOutlet UIImageView *bigImage;
 
 @end
 
@@ -31,26 +35,59 @@
 {
 	_newsModel = newsModel;
 	
+	// 图片轮播
 	[self setupCycleImageCell:newsModel];
-	
-	[self.iconImage sd_setImageWithURL:[NSURL URLWithString:newsModel.imgsrc] placeholderImage:[UIImage imageNamed:@"placeholder_small"]];
+	// 标题
 	self.titleLabel.text = newsModel.title;
+	// 标题
 	self.digestLabel.text = newsModel.digest;
-	//	self.replyLabel.text = [NSString stringWithFormat:@"%zd", newsModel.replyCount];
+	// 跟帖数
 	CGFloat count = newsModel.replyCount;
-	if (count > 10000) {
-		self.replyLabel.text = [NSString stringWithFormat:@"%.1f万跟帖", count/10000];
-	} else {
-		self.replyLabel.text = [NSString stringWithFormat:@"%.0f跟帖", count];
-	}
+	if (count > 10000) {self.replyLabel.text = [NSString stringWithFormat:@"%.1f万跟帖", count/10000.f];}
+	else			   {self.replyLabel.text = [NSString stringWithFormat:@"%.0f跟帖", count];}
 	
+	// 单图、左图右字的第一张
+	[self.iconImage sd_setImageWithURL:[NSURL URLWithString:newsModel.imgsrc]
+					  placeholderImage:[UIImage imageNamed:@"placeholder_small"]
+							   options:SDWebImageDelayPlaceholder
+							   completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+								   if (cacheType == 1 || cacheType == 2) {return;} // 0新下载，1磁盘缓存，2内存缓存
+								   self.iconImage.alpha = 0;
+								   [UIView animateWithDuration:0.5 animations:^{
+									   self.iconImage.alpha = 1;
+								   }];
+							   }
+	 ];
+	
+	// 左图右字的其余2张
 	if (newsModel.imgextra.count == 2) {
 		for (int i = 0; i < 2; i++) {
 			UIImageView *imageView = self.imgextras[i];
-			[imageView sd_setImageWithURL:[NSURL URLWithString:newsModel.imgextra[i][@"imgsrc"]] placeholderImage:[UIImage imageNamed:@"placeholder_small"]];
+			[imageView sd_setImageWithURL:[NSURL URLWithString:newsModel.imgextra[i][@"imgsrc"]]
+						 placeholderImage:[UIImage imageNamed:@"placeholder_small"]
+								  options:SDWebImageDelayPlaceholder
+								completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+									if (cacheType == 1 || cacheType == 2) {return;} // 0新下载，1磁盘缓存，2内存缓存
+									imageView.alpha = 0;
+									[UIView animateWithDuration:0.5 animations:^{
+										imageView.alpha = 1;
+									}];
+								}];
 		}
 	}
-
+	
+	// 大图的单张：
+	[self.bigImage sd_setImageWithURL:[NSURL URLWithString:newsModel.imgsrc]
+					 placeholderImage:[UIImage imageNamed:@"placeholder_big"]
+							  options:SDWebImageDelayPlaceholder
+							completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+								if (cacheType == 1 || cacheType == 2) {return;} // 0新下载，1磁盘缓存，2内存缓存
+								self.bigImage.alpha = 0;
+								[UIView animateWithDuration:0.5 animations:^{
+									self.bigImage.alpha = 1;
+								}];
+							}
+	 ];
 }
 
 #pragma mark - 图片轮播
@@ -61,7 +98,6 @@
 	SDCycleScrollView *cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:self.cycleImageView.bounds delegate:nil placeholderImage:[UIImage imageNamed:@"placeholder_big"]];
 	cycleScrollView.pageControlAliment = SDCycleScrollViewPageContolAlimentRight;
 	cycleScrollView.currentPageDotColor = [UIColor whiteColor];
-	
 	
 	cycleScrollView.titlesGroup = ({
 		NSMutableArray *titleArrayM = [NSMutableArray array];
