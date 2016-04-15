@@ -24,9 +24,9 @@ static NSString * const reuseID  = @"DDChannelCell";
 /** 频道数据模型 */
 @property (nonatomic, strong) NSArray *channelList;
 /** 当前要展示频道 */
-@property (nonatomic, strong) NSMutableArray *list_now;
+@property (nonatomic, strong) NSMutableArray *list_now; // 功能待完善
 /** 已经删除的频道 */
-@property (nonatomic, strong) NSMutableArray *list_del;
+@property (nonatomic, strong) NSMutableArray *list_del; // 功能待完善
 
 /** 频道列表 */
 @property (nonatomic, strong) UIScrollView *smallScrollView;
