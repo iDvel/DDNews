@@ -55,6 +55,7 @@
 		340601C11CB7A347000EECE4 /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 340601B11CB7A347000EECE4 /* UIView+WebCacheOperation.m */; };
 		349019831CC0A07100890D58 /* DDSortView.m in Sources */ = {isa = PBXBuildFile; fileRef = 349019821CC0A07100890D58 /* DDSortView.m */; };
 		349019891CC0A7B300890D58 /* LXReorderableCollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 349019881CC0A7B300890D58 /* LXReorderableCollectionViewFlowLayout.m */; };
+		3490198C1CC10A9600890D58 /* DDSortCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3490198B1CC10A9600890D58 /* DDSortCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -172,6 +173,8 @@
 		349019821CC0A07100890D58 /* DDSortView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDSortView.m; sourceTree = "<group>"; };
 		349019871CC0A7B300890D58 /* LXReorderableCollectionViewFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXReorderableCollectionViewFlowLayout.h; sourceTree = "<group>"; };
 		349019881CC0A7B300890D58 /* LXReorderableCollectionViewFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXReorderableCollectionViewFlowLayout.m; sourceTree = "<group>"; };
+		3490198A1CC10A9600890D58 /* DDSortCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDSortCell.h; sourceTree = "<group>"; };
+		3490198B1CC10A9600890D58 /* DDSortCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDSortCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -410,6 +413,8 @@
 			children = (
 				349019811CC0A07100890D58 /* DDSortView.h */,
 				349019821CC0A07100890D58 /* DDSortView.m */,
+				3490198A1CC10A9600890D58 /* DDSortCell.h */,
+				3490198B1CC10A9600890D58 /* DDSortCell.m */,
 				349019861CC0A7B300890D58 /* LXReorderableCollectionViewFlowLayout */,
 			);
 			path = "分类排序";
@@ -577,6 +582,7 @@
 				340601C01CB7A347000EECE4 /* UIImageView+WebCache.m in Sources */,
 				340601BE1CB7A347000EECE4 /* UIImage+WebP.m in Sources */,
 				340601B41CB7A347000EECE4 /* SDImageCache.m in Sources */,
+				3490198C1CC10A9600890D58 /* DDSortCell.m in Sources */,
 				3406018B1CB79EAF000EECE4 /* TADotView.m in Sources */,
 				340601BD1CB7A347000EECE4 /* UIImage+MultiFormat.m in Sources */,
 				340601B81CB7A347000EECE4 /* SDWebImageDownloaderOperation.m in Sources */,

@@ -17,7 +17,7 @@
 {
 	self = [super initWithFrame:frame];
 	if (self) {
-		NSLog(@"%s", __func__);
+//		NSLog(@"%s", __func__);
 	}
 	return self;
 }

@@ -7,17 +7,23 @@
 //
 
 #import "DDSortView.h"
+#import "DDSortCell.h"
+
 #import "LXReorderableCollectionViewFlowLayout.h"
 #import "UIView+Extension.h"
 
-@interface DDSortView () <LXReorderableCollectionViewDataSource, LXReorderableCollectionViewDelegateFlowLayout>
+static NSString * const reuseID1 = @"ShouYeCell";
+static NSString * const reuseID2 = @"OthersCell";
 
+@interface DDSortView () <LXReorderableCollectionViewDataSource, LXReorderableCollectionViewDelegateFlowLayout>
+@property (nonatomic, strong) NSMutableArray *channelList;
 @end
 
 @implementation DDSortView
 
 - (instancetype)initWithFrame:(CGRect)frame channelList:(NSMutableArray *)channelList
 {
+	_channelList = channelList;
 	self = [super initWithFrame:frame];
 	if (self) {
 		self.backgroundColor = [UIColor whiteColor];
@@ -36,7 +42,8 @@
 															  collectionViewLayout:flowLayout];
 		collectionView.backgroundColor = [UIColor whiteColor];
 		collectionView.dataSource = self;
-		[collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"cell"];
+		[collectionView registerClass:[DDSortCell class] forCellWithReuseIdentifier:reuseID2];
+//		[collectionView registerNib:[UINib nibWithNibName:@"DDChannelSortCell" bundle: [NSBundle mainBundle]] forCellWithReuseIdentifier:reuseID2];
 		[self addSubview:collectionView];
 		
 		// 设置cell的大小和细节,每排4个
@@ -66,13 +73,13 @@
 #pragma mark - UICollectionViewDataSource
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-	return 100;
+	return _channelList.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-	UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
-	cell.backgroundColor = [UIColor colorWithRed:((float)arc4random_uniform(256) / 255.0) green:((float)arc4random_uniform(256) / 255.0) blue:((float)arc4random_uniform(256) / 255.0) alpha:1.0];
+	DDSortCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseID2 forIndexPath:indexPath];
+	[cell.button setTitle:[_channelList[indexPath.row] valueForKey:@"tname"] forState:UIControlStateNormal];
 	return cell;
 }
 
