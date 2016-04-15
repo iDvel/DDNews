@@ -166,7 +166,7 @@ static NSString * const reuseID  = @"DDChannelCell";
 		_smallScrollView.backgroundColor = [UIColor whiteColor];
 		_smallScrollView.showsHorizontalScrollIndicator = NO;
 		// 设置频道
-		_list_now = self.channelList.copy;
+		_list_now = self.channelList.mutableCopy;
 		[self setupChannelLabel];
 		// 设置下划线
 		[_smallScrollView addSubview:({
@@ -217,7 +217,7 @@ static NSString * const reuseID  = @"DDChannelCell";
 		_sortButton.layer.shadowRadius = 5;
 		_sortButton.layer.shadowOffset = CGSizeMake(-10, 0);
 		
-		[_sortButton addTarget:self action:@selector(sortButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+		[_sortButton addTarget:self action:@selector(sortButtonClick) forControlEvents:UIControlEventTouchUpInside];
 	}
 	return _sortButton;
 }
@@ -239,6 +239,34 @@ static NSString * const reuseID  = @"DDChannelCell";
 			} completion:^(BOOL finished) {
 				[weakSelf.sortView removeFromSuperview];
 			}];
+		};
+		// 排序完成回调
+		_sortView.sortCompletedBlock = ^(NSMutableArray *channelList){
+			weakSelf.list_now = channelList;
+			// 去除旧的排序
+			for (DDChannelLabel *label in [weakSelf getLabelArrayFromSubviews]) {
+				[label removeFromSuperview];
+			}
+			// 加入新的排序
+			[weakSelf setupChannelLabel];
+			// 滚到第一个频道！offset、下划线、着色，都去第一个.
+			[weakSelf.smallScrollView setContentOffset:CGPointMake(0, 0)];
+			[weakSelf.bigCollectionView setContentOffset:CGPointMake(0, 0)]; // big也要滚到第一个
+			DDChannelLabel *firstLabel = [weakSelf getLabelArrayFromSubviews][0];
+			weakSelf.underline.width = firstLabel.textWidth;
+			weakSelf.underline.centerX = firstLabel.centerX;
+		};
+		// cell按钮点击回调
+		_sortView.cellButtonClick = ^(UIButton *button){
+			// 模拟label被点击
+			for (DDChannelLabel *label in [weakSelf getLabelArrayFromSubviews]) {
+				if ([label.text isEqualToString:button.titleLabel.text]) {
+					weakSelf.sortView.arrowBtnClickBlock(); // 关闭sortView
+					UITapGestureRecognizer *tap = [UITapGestureRecognizer new];
+					[tap setValue:label forKey:@"view"]; // KVC赋值只读属性
+					[weakSelf labelClick:tap];	// 模拟点击，滚动到该滚的地方
+				}
+			}
 		};
 	}
 	return _sortView;
@@ -288,7 +316,7 @@ static NSString * const reuseID  = @"DDChannelCell";
 }
 
 /** 排序按钮点击事件 */
-- (void)sortButtonClick:(UIButton *)sender
+- (void)sortButtonClick
 {
 	[self.view addSubview:self.sortView];
 	_sortView.y = -ScrH;

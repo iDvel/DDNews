@@ -8,6 +8,7 @@
 
 #import "DDSortView.h"
 #import "DDSortCell.h"
+#import "DDChannelLabel.h"
 
 #import "LXReorderableCollectionViewFlowLayout.h"
 #import "UIView+Extension.h"
@@ -23,7 +24,7 @@ static NSString * const reuseID2 = @"OthersCell";
 
 - (instancetype)initWithFrame:(CGRect)frame channelList:(NSMutableArray *)channelList
 {
-	_channelList = channelList;
+	_channelList = channelList.mutableCopy;
 	self = [super initWithFrame:frame];
 	if (self) {
 		self.backgroundColor = [UIColor whiteColor];
@@ -42,8 +43,8 @@ static NSString * const reuseID2 = @"OthersCell";
 															  collectionViewLayout:flowLayout];
 		collectionView.backgroundColor = [UIColor whiteColor];
 		collectionView.dataSource = self;
+		collectionView.delegate = self;
 		[collectionView registerClass:[DDSortCell class] forCellWithReuseIdentifier:reuseID2];
-//		[collectionView registerNib:[UINib nibWithNibName:@"DDChannelSortCell" bundle: [NSBundle mainBundle]] forCellWithReuseIdentifier:reuseID2];
 		[self addSubview:collectionView];
 		
 		// 设置cell的大小和细节,每排4个
@@ -80,7 +81,34 @@ static NSString * const reuseID2 = @"OthersCell";
 {
 	DDSortCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseID2 forIndexPath:indexPath];
 	[cell.button setTitle:[_channelList[indexPath.row] valueForKey:@"tname"] forState:UIControlStateNormal];
+	[cell.button addTarget:self action:@selector(cellButtonClick:) forControlEvents:UIControlEventTouchUpInside];
 	return cell;
+}
+
+#pragma mark LXReorderableCollectionViewDataSource
+- (void)collectionView:(UICollectionView *)collectionView itemAtIndexPath:(NSIndexPath *)fromIndexPath willMoveToIndexPath:(NSIndexPath *)toIndexPath
+{
+	DDChannelLabel *label = _channelList[fromIndexPath.item];
+	[_channelList removeObjectAtIndex:fromIndexPath.item];
+	[_channelList insertObject:label atIndex:toIndexPath.item];
+}
+
+- (void)collectionView:(UICollectionView *)collectionView itemAtIndexPath:(NSIndexPath *)fromIndexPath didMoveToIndexPath:(NSIndexPath *)toIndexPath
+{
+	if (self.sortCompletedBlock) {
+		self.sortCompletedBlock(_channelList);
+	}
+}
+
+- (BOOL)collectionView:(UICollectionView *)collectionView canMoveItemAtIndexPath:(NSIndexPath *)indexPath
+{
+//	if (indexPath.row == 0) {return NO;}
+	return YES;
+}
+- (BOOL)collectionView:(UICollectionView *)collectionView itemAtIndexPath:(NSIndexPath *)fromIndexPath canMoveToIndexPath:(NSIndexPath *)toIndexPath
+{
+//	if (fromIndexPath.row == 0 || toIndexPath.row == 0) {return NO;}
+	return YES;
 }
 
 #pragma mark 点击事件
@@ -90,10 +118,12 @@ static NSString * const reuseID2 = @"OthersCell";
 	self.arrowBtnClickBlock();
 }
 
-
-
-- (void)dealloc
+/** cell按钮点击事件 */
+- (void)cellButtonClick:(UIButton *)button
 {
-	NSLog(@"~");
+	if (self.cellButtonClick) {
+		self.cellButtonClick(button);
+	}
 }
+
 @end
