@@ -30,6 +30,7 @@
 		[weakSelf loadMoreData];
 	}];
 	
+	// 去除刷新前的横线
 	UIView*view = [UIView new];
 	view.backgroundColor= [UIColor clearColor];
 	[self.tableView setTableFooterView:view];
