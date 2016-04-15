@@ -10,6 +10,7 @@
 #import "DDChannelModel.h"
 #import "DDChannelLabel.h"
 #import "DDChannelCell.h"
+#import "DDSortView.h"
 
 #import "UIView+Extension.h"
 
@@ -35,6 +36,9 @@ static NSString * const reuseID  = @"DDChannelCell";
 @property (nonatomic, strong) UIView *underline;
 /** 右侧添加删除排序按钮 */
 @property (nonatomic, strong) UIButton *sortButton;
+/** 分类排序界面 */
+@property (nonatomic, strong) DDSortView *sortView;
+
 @end
 
 @implementation DDNewsViewController
@@ -209,14 +213,27 @@ static NSString * const reuseID  = @"DDChannelCell";
 		[_sortButton setImage:[UIImage imageNamed:@"ks_home_plus"] forState:UIControlStateNormal];
 		_sortButton.backgroundColor = [UIColor whiteColor];
 		_sortButton.layer.shadowColor = [UIColor whiteColor].CGColor;
-		_sortButton.layer.shadowOpacity = 0.8;
+		_sortButton.layer.shadowOpacity = 1;
 		_sortButton.layer.shadowRadius = 5;
-		_sortButton.layer.shadowOffset = CGSizeMake(-5, 0);
+		_sortButton.layer.shadowOffset = CGSizeMake(-10, 0);
 		
 		[_sortButton addTarget:self action:@selector(sortButtonClick:) forControlEvents:UIControlEventTouchUpInside];
 	}
 	return _sortButton;
 }
+
+- (DDSortView *)sortView
+{
+	if (_sortView == nil) {
+		_sortView = [[DDSortView alloc] initWithFrame:CGRectMake(_smallScrollView.x,
+																 _smallScrollView.y,
+																 ScrW,
+																 _smallScrollView.height + _bigCollectionView.height)
+										  channelList:_list_now];
+	}
+	return _sortView;
+}
+
 
 #pragma mark - 
 /** 设置频道标题 */
@@ -262,20 +279,26 @@ static NSString * const reuseID  = @"DDChannelCell";
 
 - (void)sortButtonClick:(UIButton *)sender
 {
-	UIView *view = [[UIView alloc] initWithFrame:_smallScrollView.frame];
-	view.backgroundColor = [UIColor blueColor];
-	view.width = 0;
-	[self.view addSubview:view];
-	
-	UIView *sortView = [[UIView alloc] initWithFrame:_bigCollectionView.frame];
-	sortView.backgroundColor = [UIColor orangeColor];
-	sortView.height = 0;
-	[self.view addSubview:sortView];
-	
-	[UIView animateWithDuration:3 animations:^{
-		view.width = _smallScrollView.width;
-		sortView.height = _bigCollectionView.height;
-		self.tabBarController.tabBar.y = 999;
+//	UIView *view = [[UIView alloc] initWithFrame:_smallScrollView.frame];
+//	view.backgroundColor = [UIColor blueColor];
+//	view.width = 0;
+//	[self.view addSubview:view];
+//	
+//	UIView *sortView = [[UIView alloc] initWithFrame:_bigCollectionView.frame];
+//	sortView.backgroundColor = [UIColor orangeColor];
+//	sortView.height = 0;
+//	[self.view addSubview:sortView];
+//	
+//	[UIView animateWithDuration:3 animations:^{
+//		view.width = _smallScrollView.width;
+//		sortView.height = _bigCollectionView.height;
+//		self.tabBarController.tabBar.y = 999;
+//	}];
+	[self.view addSubview:self.sortView];
+	_sortView.y = -ScrH;
+	[UIView animateWithDuration:0.5 animations:^{
+		self.tabBarController.tabBar.y = self.tabBarController.tabBar.y + 49;
+		_sortView.y = _smallScrollView.y;
 	}];
 }
 
