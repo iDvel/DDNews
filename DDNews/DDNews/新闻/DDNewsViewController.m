@@ -230,6 +230,16 @@ static NSString * const reuseID  = @"DDChannelCell";
 																 ScrW,
 																 _smallScrollView.height + _bigCollectionView.height)
 										  channelList:_list_now];
+		__block typeof(self) weakSelf = self;
+		// 箭头点击回调
+		_sortView.arrowBtnClickBlock = ^{
+			[UIView animateWithDuration:0.5 animations:^{
+				weakSelf.sortView.y = -ScrH;
+				weakSelf.tabBarController.tabBar.y -= 49;
+			} completion:^(BOOL finished) {
+				[weakSelf.sortView removeFromSuperview];
+			}];
+		};
 	}
 	return _sortView;
 }
@@ -277,27 +287,13 @@ static NSString * const reuseID  = @"DDChannelCell";
 	return arrayM.copy;
 }
 
+/** 排序按钮点击事件 */
 - (void)sortButtonClick:(UIButton *)sender
 {
-//	UIView *view = [[UIView alloc] initWithFrame:_smallScrollView.frame];
-//	view.backgroundColor = [UIColor blueColor];
-//	view.width = 0;
-//	[self.view addSubview:view];
-//	
-//	UIView *sortView = [[UIView alloc] initWithFrame:_bigCollectionView.frame];
-//	sortView.backgroundColor = [UIColor orangeColor];
-//	sortView.height = 0;
-//	[self.view addSubview:sortView];
-//	
-//	[UIView animateWithDuration:3 animations:^{
-//		view.width = _smallScrollView.width;
-//		sortView.height = _bigCollectionView.height;
-//		self.tabBarController.tabBar.y = 999;
-//	}];
 	[self.view addSubview:self.sortView];
 	_sortView.y = -ScrH;
 	[UIView animateWithDuration:0.5 animations:^{
-		self.tabBarController.tabBar.y = self.tabBarController.tabBar.y + 49;
+		self.tabBarController.tabBar.y += 49;
 		_sortView.y = _smallScrollView.y;
 	}];
 }

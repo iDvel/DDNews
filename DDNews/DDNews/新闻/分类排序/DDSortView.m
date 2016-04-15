@@ -28,7 +28,7 @@
 		[label sizeToFit];
 		[self addSubview:label];
 		
-		// 下面的排序collectionView,
+		// 中间的排序collectionView,
 		LXReorderableCollectionViewFlowLayout *flowLayout = [LXReorderableCollectionViewFlowLayout new];
 		UICollectionView *collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 44,
 																							  frame.size.width,
@@ -41,8 +41,8 @@
 		
 		// 设置cell的大小和细节,每排4个
 		CGFloat margin = 20.0;
-		CGFloat width = ([UIScreen mainScreen].bounds.size.width - margin * 5) / 4;
-		CGFloat height = width * 3 / 7; // 按图片比例来的
+		CGFloat width  = ([UIScreen mainScreen].bounds.size.width - margin * 5) / 4.f;
+		CGFloat height = width * 3.f / 7.f; // 按图片比例来的
 		flowLayout.sectionInset = UIEdgeInsetsMake(5, margin, 5, margin);
 		flowLayout.itemSize = CGSizeMake(width, height);
 		flowLayout.minimumInteritemSpacing = margin;
@@ -51,12 +51,13 @@
 		// 下面49高度的箭头（覆盖tabbar）
 		UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(collectionView.frame),
 																	 frame.size.width, 49)];
+		button.backgroundColor = [UIColor whiteColor];
 		[button setImage:[UIImage imageNamed:@"up_arrow"] forState:UIControlStateNormal];
 		button.layer.shadowColor = [UIColor whiteColor].CGColor;
-		button.layer.shadowRadius = 10;
-		button.layer.shadowOffset = CGSizeMake(0, -20);
+		button.layer.shadowRadius = 5;
+		button.layer.shadowOffset = CGSizeMake(0, -10);
 		button.layer.shadowOpacity = 1;
-		[button addTarget:self action:@selector(arrowButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+		[button addTarget:self action:@selector(arrowButtonClick) forControlEvents:UIControlEventTouchUpInside];
 		[self addSubview:button];
 	}
 	return self;
@@ -77,15 +78,15 @@
 
 #pragma mark 点击事件
 /** 箭头按钮点击事件 */
-- (void)arrowButtonClick:(UIButton *)sender
+- (void)arrowButtonClick
 {
-	[UIView animateWithDuration:0.5 animations:^{
-		self.y = -[UIScreen mainScreen].bounds.size.height;
-	} completion:^(BOOL finished) {
-		if (finished) {
-			[self removeFromSuperview];
-		}
-	}];
+	self.arrowBtnClickBlock();
 }
 
+
+
+- (void)dealloc
+{
+	NSLog(@"~");
+}
 @end

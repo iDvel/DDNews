@@ -10,4 +10,6 @@
 
 @interface DDSortView : UIView
 - (instancetype)initWithFrame:(CGRect)frame channelList:(NSMutableArray *)channelList;
+
+@property (nonatomic, copy) void(^arrowBtnClickBlock)();
 @end
