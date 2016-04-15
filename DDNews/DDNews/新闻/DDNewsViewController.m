@@ -249,12 +249,11 @@ static NSString * const reuseID  = @"DDChannelCell";
 			}
 			// 加入新的排序
 			[weakSelf setupChannelLabel];
-			// 滚到第一个频道！offset、下划线、着色，都去第一个.
-			[weakSelf.smallScrollView setContentOffset:CGPointMake(0, 0)];
-			[weakSelf.bigCollectionView setContentOffset:CGPointMake(0, 0)]; // big也要滚到第一个
-			DDChannelLabel *firstLabel = [weakSelf getLabelArrayFromSubviews][0];
-			weakSelf.underline.width = firstLabel.textWidth;
-			weakSelf.underline.centerX = firstLabel.centerX;
+			// 滚到第一个频道！offset、下划线、着色，都去第一个. 直接模拟第一个label被点击：
+			DDChannelLabel *label = [weakSelf getLabelArrayFromSubviews][0];
+			UITapGestureRecognizer *tap = [UITapGestureRecognizer new];
+			[tap setValue:label forKey:@"view"];
+			[weakSelf labelClick:tap];
 		};
 		// cell按钮点击回调
 		_sortView.cellButtonClick = ^(UIButton *button){
@@ -263,8 +262,8 @@ static NSString * const reuseID  = @"DDChannelCell";
 				if ([label.text isEqualToString:button.titleLabel.text]) {
 					weakSelf.sortView.arrowBtnClickBlock(); // 关闭sortView
 					UITapGestureRecognizer *tap = [UITapGestureRecognizer new];
-					[tap setValue:label forKey:@"view"]; // KVC赋值只读属性
-					[weakSelf labelClick:tap];	// 模拟点击，滚动到该滚的地方
+					[tap setValue:label forKey:@"view"];
+					[weakSelf labelClick:tap];
 				}
 			}
 		};
