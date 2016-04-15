@@ -51,7 +51,7 @@ static NSString * const reuseID2 = @"OthersCell";
 		CGFloat margin = 20.0;
 		CGFloat width  = ([UIScreen mainScreen].bounds.size.width - margin * 5) / 4.f;
 		CGFloat height = width * 3.f / 7.f; // 按图片比例来的
-		flowLayout.sectionInset = UIEdgeInsetsMake(5, margin, 5, margin);
+		flowLayout.sectionInset = UIEdgeInsetsMake(5, margin, 10, margin);
 		flowLayout.itemSize = CGSizeMake(width, height);
 		flowLayout.minimumInteritemSpacing = margin;
 		flowLayout.minimumLineSpacing = 20;
@@ -78,10 +78,19 @@ static NSString * const reuseID2 = @"OthersCell";
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
-{
+{	
 	DDSortCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseID2 forIndexPath:indexPath];
 	[cell.button setTitle:[_channelList[indexPath.row] valueForKey:@"tname"] forState:UIControlStateNormal];
 	[cell.button addTarget:self action:@selector(cellButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+
+	// 在每个cell下面生成一个虚线的框框
+	UIButton *placeholderBtn = [[UIButton alloc] initWithFrame:cell.frame];
+	[placeholderBtn setBackgroundImage:[UIImage imageNamed:@"channel_sort_placeholder"] forState:UIControlStateNormal];
+	placeholderBtn.width  -= 1;		placeholderBtn.centerX = cell.centerX;
+	placeholderBtn.height -= 1;		placeholderBtn.centerY = cell.centerY;
+//	[collectionView insertSubview:placeholderBtn atIndex:0];
+	[collectionView insertSubview:placeholderBtn belowSubview:collectionView.subviews[0]];
+	
 	return cell;
 }
 
