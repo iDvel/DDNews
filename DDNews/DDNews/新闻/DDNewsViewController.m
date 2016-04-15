@@ -235,7 +235,8 @@ static NSString * const reuseID  = @"DDChannelCell";
 		_sortView.arrowBtnClickBlock = ^{
 			[UIView animateWithDuration:0.5 animations:^{
 				weakSelf.sortView.y = -ScrH;
-				weakSelf.tabBarController.tabBar.y -= 49;
+//				weakSelf.tabBarController.tabBar.y -= 49;
+				weakSelf.tabBarController.tabBar.y = ScrH - 49; // 这么写防止用户多次点击label和排序按钮，造成tabbar错乱
 			} completion:^(BOOL finished) {
 				[weakSelf.sortView removeFromSuperview];
 			}];
