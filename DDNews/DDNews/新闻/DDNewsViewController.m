@@ -132,12 +132,12 @@ static NSString * const reuseID  = @"DDChannelCell";
 	if (offsetx > offsetMax) {offsetx = offsetMax;}
 	[_smallScrollView setContentOffset:CGPointMake(offsetx, 0) animated:YES];
 	
-	// 先把之前着色的去色：
+	// 先把之前着色的去色：（快速滑动会导致有些文字颜色深浅不一，点击label会导致之前的标题不变回黑色）
 	for (DDChannelLabel *label in [self getLabelArrayFromSubviews]) {
 		label.textColor = [UIColor blackColor];
 	}
 	// 下划线滚动并着色
-	[UIView animateWithDuration:0.3 animations:^{
+	[UIView animateWithDuration:0.5 animations:^{
 		_underline.width = titleLable.textWidth;
 		_underline.centerX = titleLable.centerX;
 		titleLable.textColor = AppColor;
