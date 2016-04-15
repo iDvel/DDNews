@@ -7,8 +7,9 @@
 //
 
 #import "DDSortView.h"
+#import "DDChannelModel.h"
 #import "DDSortCell.h"
-#import "DDChannelLabel.h"
+#import "DDSortCell_first.h"
 
 #import "LXReorderableCollectionViewFlowLayout.h"
 #import "UIView+Extension.h"
@@ -44,6 +45,7 @@ static NSString * const reuseID2 = @"OthersCell";
 		collectionView.backgroundColor = [UIColor whiteColor];
 		collectionView.dataSource = self;
 		collectionView.delegate = self;
+		[collectionView registerClass:[DDSortCell_first class] forCellWithReuseIdentifier:reuseID1];
 		[collectionView registerClass:[DDSortCell class] forCellWithReuseIdentifier:reuseID2];
 		[self addSubview:collectionView];
 		
@@ -78,28 +80,35 @@ static NSString * const reuseID2 = @"OthersCell";
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
-{	
-	DDSortCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseID2 forIndexPath:indexPath];
-	[cell.button setTitle:[_channelList[indexPath.row] valueForKey:@"tname"] forState:UIControlStateNormal];
-	[cell.button addTarget:self action:@selector(cellButtonClick:) forControlEvents:UIControlEventTouchUpInside];
-
-	// 在每个cell下面生成一个虚线的框框
-	UIButton *placeholderBtn = [[UIButton alloc] initWithFrame:cell.frame];
-	[placeholderBtn setBackgroundImage:[UIImage imageNamed:@"channel_sort_placeholder"] forState:UIControlStateNormal];
-	placeholderBtn.width  -= 1;		placeholderBtn.centerX = cell.centerX;
-	placeholderBtn.height -= 1;		placeholderBtn.centerY = cell.centerY;
-//	[collectionView insertSubview:placeholderBtn atIndex:0];
-	[collectionView insertSubview:placeholderBtn belowSubview:collectionView.subviews[0]];
-	
-	return cell;
+{
+	if (indexPath.row == 0) {
+		DDSortCell_first *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseID1 forIndexPath:indexPath];
+		DDChannelModel *first = _channelList[0];
+		[cell.button setTitle:first.tname forState:UIControlStateNormal];
+		[cell.button addTarget:self action:@selector(cellButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+		return cell;
+	} else {
+		DDSortCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseID2 forIndexPath:indexPath];
+		[cell.button setTitle:[_channelList[indexPath.row] valueForKey:@"tname"] forState:UIControlStateNormal];
+		[cell.button addTarget:self action:@selector(cellButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+		
+		// 在每个cell下面生成一个虚线的框框
+		UIButton *placeholderBtn = [[UIButton alloc] initWithFrame:cell.frame];
+		[placeholderBtn setBackgroundImage:[UIImage imageNamed:@"channel_sort_placeholder"] forState:UIControlStateNormal];
+		placeholderBtn.width  -= 1;		placeholderBtn.centerX = cell.centerX;
+		placeholderBtn.height -= 1;		placeholderBtn.centerY = cell.centerY;
+		[collectionView insertSubview:placeholderBtn atIndex:0];
+		
+		return cell;
+	}
 }
 
 #pragma mark LXReorderableCollectionViewDataSource
 - (void)collectionView:(UICollectionView *)collectionView itemAtIndexPath:(NSIndexPath *)fromIndexPath willMoveToIndexPath:(NSIndexPath *)toIndexPath
 {
-	DDChannelLabel *label = _channelList[fromIndexPath.item];
+	DDChannelModel *model = _channelList[fromIndexPath.item];
 	[_channelList removeObjectAtIndex:fromIndexPath.item];
-	[_channelList insertObject:label atIndex:toIndexPath.item];
+	[_channelList insertObject:model atIndex:toIndexPath.item];
 }
 
 - (void)collectionView:(UICollectionView *)collectionView itemAtIndexPath:(NSIndexPath *)fromIndexPath didMoveToIndexPath:(NSIndexPath *)toIndexPath
@@ -111,12 +120,12 @@ static NSString * const reuseID2 = @"OthersCell";
 
 - (BOOL)collectionView:(UICollectionView *)collectionView canMoveItemAtIndexPath:(NSIndexPath *)indexPath
 {
-//	if (indexPath.row == 0) {return NO;}
+	if (indexPath.row == 0) {return NO;}
 	return YES;
 }
 - (BOOL)collectionView:(UICollectionView *)collectionView itemAtIndexPath:(NSIndexPath *)fromIndexPath canMoveToIndexPath:(NSIndexPath *)toIndexPath
 {
-//	if (fromIndexPath.row == 0 || toIndexPath.row == 0) {return NO;}
+	if (fromIndexPath.row == 0 || toIndexPath.row == 0) {return NO;}
 	return YES;
 }
 

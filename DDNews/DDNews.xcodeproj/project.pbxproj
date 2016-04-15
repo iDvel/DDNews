@@ -56,6 +56,7 @@
 		349019831CC0A07100890D58 /* DDSortView.m in Sources */ = {isa = PBXBuildFile; fileRef = 349019821CC0A07100890D58 /* DDSortView.m */; };
 		349019891CC0A7B300890D58 /* LXReorderableCollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 349019881CC0A7B300890D58 /* LXReorderableCollectionViewFlowLayout.m */; };
 		3490198C1CC10A9600890D58 /* DDSortCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3490198B1CC10A9600890D58 /* DDSortCell.m */; };
+		349019941CC14E3E00890D58 /* DDSortCell_first.m in Sources */ = {isa = PBXBuildFile; fileRef = 349019931CC14E3E00890D58 /* DDSortCell_first.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -175,6 +176,8 @@
 		349019881CC0A7B300890D58 /* LXReorderableCollectionViewFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXReorderableCollectionViewFlowLayout.m; sourceTree = "<group>"; };
 		3490198A1CC10A9600890D58 /* DDSortCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDSortCell.h; sourceTree = "<group>"; };
 		3490198B1CC10A9600890D58 /* DDSortCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDSortCell.m; sourceTree = "<group>"; };
+		349019921CC14E3E00890D58 /* DDSortCell_first.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDSortCell_first.h; sourceTree = "<group>"; };
+		349019931CC14E3E00890D58 /* DDSortCell_first.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDSortCell_first.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -415,6 +418,8 @@
 				349019821CC0A07100890D58 /* DDSortView.m */,
 				3490198A1CC10A9600890D58 /* DDSortCell.h */,
 				3490198B1CC10A9600890D58 /* DDSortCell.m */,
+				349019921CC14E3E00890D58 /* DDSortCell_first.h */,
+				349019931CC14E3E00890D58 /* DDSortCell_first.m */,
 				349019861CC0A7B300890D58 /* LXReorderableCollectionViewFlowLayout */,
 			);
 			path = "分类排序";
@@ -599,6 +604,7 @@
 				340601891CB79EAF000EECE4 /* TAAbstractDotView.m in Sources */,
 				340601B61CB7A347000EECE4 /* SDWebImageDecoder.m in Sources */,
 				3406018E1CB79EAF000EECE4 /* SDCycleScrollView.m in Sources */,
+				349019941CC14E3E00890D58 /* DDSortCell_first.m in Sources */,
 				340600F51CB62CEC000EECE4 /* AppDelegate.m in Sources */,
 				3406016B1CB78337000EECE4 /* AFNetworkReachabilityManager.m in Sources */,
 				340601781CB783C5000EECE4 /* DDNetworkTool.m in Sources */,
