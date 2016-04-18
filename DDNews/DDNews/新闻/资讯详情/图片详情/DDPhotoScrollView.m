@@ -67,6 +67,28 @@
 	CGPoint actualCenter = CGPointMake(scrollView.contentSize.width * 0.5 + offsetX,
 									   scrollView.contentSize.height * 0.5 + offsetY);
 	_imageView.center = actualCenter;
+//	NSLog(@"%@", NSStringFromCGAffineTransform(scrollView.subviews[0].transform));
+}
+
+#warning TODO 待改进
+/** 放大后，切换到下一张的时候，将原来那一张变回原来的大小 
+ *  WARNING：并不会百分百调用这个方法。。。
+ */
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+	NSLog(@"%s", __func__);
+	
+	// 直接模拟doubleTap即可
+	UITapGestureRecognizer *recognizer = [UITapGestureRecognizer new];
+	[recognizer setValue:scrollView forKey:@"view"];
+	[self doubleTapOnScrollView:recognizer];
+	
+//	UIImageView *imageView = scrollView.subviews[0];
+//	[UIView animateWithDuration:0.5 animations:^{
+//		imageView.transform = CGAffineTransformMake(1, 0, 0, 1, 0, 0);
+//		imageView.frame = CGRectMake(0, 0, ScrW, ScrH);
+//		scrollView.contentSize = imageView.frame.size;
+//	}];
 }
 
 
