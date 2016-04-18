@@ -14,20 +14,19 @@
 #import "JZNavigationExtension.h"
 #import "UIImageView+WebCache.h"
 #import "UIView+Extension.h"
+#import "JT3DScrollView.h"
 
 #define ScrW [UIScreen mainScreen].bounds.size.width
 #define ScrH [UIScreen mainScreen].bounds.size.height
 
-@interface DDPhotoDetailController () <UIScrollViewDelegate>
+@interface DDPhotoDetailController ()
 @property (nonatomic, strong) DDPhotoModel *photoModel;
 
 // UI
 @property (nonatomic, strong) UIButton *backButton;
-@property (nonatomic, strong) UIScrollView *imageScrollView;
+@property (nonatomic, strong) JT3DScrollView *imageScrollView;
 @property (nonatomic, assign) CGFloat totalScale;
 
-// 图片浏览缩放：
-@property (nonatomic, assign, getter=isBig) BOOL big;
 @end
 
 @implementation DDPhotoDetailController
@@ -49,14 +48,15 @@
 	self.view.backgroundColor = [UIColor colorWithRed:0.174 green:0.174 blue:0.164 alpha:1.000];
 	self.navigationController.fullScreenInteractivePopGestureRecognizer = YES;
 	[[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
+	
+	[self.view addSubview:self.backButton];
 }
 
-/** 模型初始化后，开始搭建UI。 */
+/** 模型初始化后，开始搭建需要网络加载后才显示的UI。 */
 - (void)setPhotoModel:(DDPhotoModel *)photoModel
 {
 	_photoModel = photoModel;
 	[self.view addSubview:self.imageScrollView];
-	[self.view addSubview:self.backButton];
 }
 
 
@@ -73,14 +73,15 @@
 }
 
 
-- (UIScrollView *)imageScrollView
+- (JT3DScrollView *)imageScrollView
 {
 	if (_imageScrollView == nil) {
 		// 1.设置大ScrollView
-		_imageScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, ScrW, ScrH)];
+		_imageScrollView = [[JT3DScrollView alloc] initWithFrame:CGRectMake(0, 0, ScrW, ScrH)];
 		_imageScrollView.contentSize = CGSizeMake(_photoModel.photos.count * ScrW, ScrH);
 		_imageScrollView.showsHorizontalScrollIndicator = NO;
-		_imageScrollView.pagingEnabled = YES;
+		_imageScrollView.effect = arc4random_uniform(3) + 1; // 切换的动画效果,随机枚举中的1，2，3三种效果。
+		_imageScrollView.clipsToBounds = YES;
 		
 		for (int i = 0; i < self.photoModel.photos.count; i++) {
 			DDPhotoDetailModel *detailModel = self.photoModel.photos[i];
@@ -90,50 +91,6 @@
 		}
 	}
 	return _imageScrollView;
-}
-
-// 允许多个手势
-- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
-{
-	return YES;
-}
-
-- (void)tap:(UITapGestureRecognizer *)recognizer
-{
-	NSLog(@"tap : %@", recognizer.view);
-}
-
-- (void)pinch:(UIPinchGestureRecognizer *)recognizer
-{
-	/*
-//	NSLog(@"%f", recognizer.scale);
-//	recognizer.view.transform = CGAffineTransformScale(recognizer.view.transform, recognizer.scale, recognizer.scale);
-//	recognizer.scale = 1;
-	
-	CGFloat scale = recognizer.scale;
-	
-	//放大情况
-	if(scale > 1.0){
-		if(self.totalScale > 2.0) return;
-	}
-	
-	//缩小情况
-	if (scale < 1.0) {
-		if (self.totalScale < 0.5) return;
-	}
-	
-	recognizer.view.transform = CGAffineTransformScale(recognizer.view.transform, scale, scale);
-	self.totalScale *=scale;
-	recognizer.scale = 1.0;
-	
-//	NSLog(@"%f", self.totalScale);
-//	if (self.totalScale < 1) {
-//		recognizer.view.width = [UIScreen mainScreen].bounds.size.width;
-//	}*/
-	// 捏合手势是  初始的中心点所在屏幕的位置不变
-	UIScrollView *singleScrollView = (UIScrollView *)recognizer.view;
-	UIImageView * imgview = singleScrollView.subviews[0];
-
 }
 
 

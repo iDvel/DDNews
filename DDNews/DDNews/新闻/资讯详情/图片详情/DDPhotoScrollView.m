@@ -32,8 +32,10 @@
 						  options:SDWebImageProgressiveDownload];
 		[self addSubview:_imageView];
 		
-		// 设置缩放
+		// 设置scrollView和缩放
 		self.delegate = self;
+		self.showsVerticalScrollIndicator = NO;
+		self.showsHorizontalScrollIndicator = NO;
 		self.maximumZoomScale = 2.0;
 		self.minimumZoomScale = 1;
 		
