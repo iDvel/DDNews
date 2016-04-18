@@ -139,7 +139,6 @@
 - (void)setupCycleImageClickWithCell:(DDNewsCell *)cell newsModel:(DDNewsModel *)newsModel
 {
 	cell.cycleImageClickBlock = ^(NSInteger idx){
-		NSLog(@"%zd", idx);
 		// 进入后是图片详情："tag": "photoset", "url": "00AJ0003|591287"
 		// 进入后是新闻详情："tag": "doc",      "url": "BH7H123N00094P0U"
 		NSString *tag = newsModel.ads[idx][@"tag"];
