@@ -11,5 +11,5 @@
 @interface DDNetworkTool : AFHTTPSessionManager
 
 + (instancetype)ToolWithNewsBaseUrl;
-
++ (instancetype)sharedTool;
 @end

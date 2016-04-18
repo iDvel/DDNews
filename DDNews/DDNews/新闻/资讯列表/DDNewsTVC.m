@@ -11,8 +11,10 @@
 #import "DDNewsCell.h"
 #import "DDNewsCache.h"
 #import "DDNewsDetailController.h"
+#import "DDPhotoDetailController.h"
 
 #import "MJRefresh.h"
+#import "JZNavigationExtension.h"
 
 @interface DDNewsTVC ()
 @property (nonatomic, strong) NSMutableArray *dataList;
@@ -120,7 +122,10 @@
 	NSLog(@"%s", __func__);
 	DDNewsModel *newsModel = self.dataList[indexPath.row];
 	if (newsModel.photosetID) {
-		NSLog(@"~");
+		DDPhotoDetailController *photoVC = [[DDPhotoDetailController alloc] initWithPhotosetID:newsModel.photosetID];
+		photoVC.wantsNavigationBarVisible = NO;
+		photoVC.hidesBottomBarWhenPushed = YES;
+		[self.navigationController pushViewController:photoVC animated:YES];
 	} else {
 		// NSLog(@"newsModel.url = %@", newsModel.url); // http://3g.163.com/ntes/16/0315/21/BI7TE54L00963VRO.html
 		// NSLog(@"newsModel.docid = %@", newsModel.docid); // BI7TE54L00963VRO
@@ -135,6 +140,31 @@
 {
 	cell.cycleImageClickBlock = ^(NSInteger idx){
 		NSLog(@"%zd", idx);
+		// 进入后是图片详情："tag": "photoset", "url": "00AJ0003|591287"
+		// 进入后是新闻详情："tag": "doc",      "url": "BH7H123N00094P0U"
+		NSString *tag = newsModel.ads[idx][@"tag"];
+		NSString *url = newsModel.ads[idx][@"url"];
+		if ([tag isEqualToString:@"photoset"]) {
+			DDPhotoDetailController *photoVC = [[DDPhotoDetailController alloc] initWithPhotosetID:url];
+			photoVC.wantsNavigationBarVisible = NO;
+			photoVC.hidesBottomBarWhenPushed = YES;
+			[self.navigationController pushViewController:photoVC animated:YES];
+		} else {
+			// newsModel.url -> "url": "http://3g.163.com/tech/16/0317/05/BIBB5271000915BD.html",
+			// newsModel.ads[idx][@"url"] -> "url": "BH7H123N00094P0U"
+			// 以上原因，newsModel.ads[idx][@"url"]返回的不是完整url，所以需要截取替换。
+			//			NSLog(@"url = %@", url);
+			//			NSLog(@"full url = %@", newsModel.url);
+			// 栗子：newsModel.ads[idx][@"url"] =					   	   BI3LFDEL00253B0H
+			// 栗子：newsModel.url = http://3g.163.com/money/16/0317/17/BICJ2C5P002534NU.html
+			// 16位 + ".html" = 21位，将newsModel.url总长度-21，获取直到/及前面的所有字符
+			NSString *str = [newsModel.url substringToIndex:newsModel.url.length - 21];
+			//			NSLog(@"str = %@", str); // 成功获取到http://3g.163.com/money/16/0317/17/
+			NSString *finalStr = [NSString stringWithFormat:@"%@%@.html", str, url]; // 拼接完成
+			
+			DDNewsDetailController *webVC = [[DDNewsDetailController alloc] initWithUrlString:finalStr];
+			[self.navigationController pushViewController:webVC animated:YES];
+		}
 	};
 }
 

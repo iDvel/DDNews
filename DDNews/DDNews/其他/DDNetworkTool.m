@@ -25,4 +25,19 @@
 	return instance;
 }
 
++ (instancetype)sharedTool
+{
+	static DDNetworkTool *instance;
+	static dispatch_once_t onceToken;
+	dispatch_once(&onceToken, ^{
+		NSURL *url = [NSURL URLWithString:@""];
+		NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
+		instance = [[self alloc] initWithBaseURL:url sessionConfiguration:config];
+		
+		// 加入 text/html 解析
+		instance.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript", @"text/html", nil];
+	});
+	return instance;
+}
+
 @end
