@@ -54,6 +54,7 @@
 		344AA1331CC4BA0300EFE3EE /* DDNewsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 344AA12D1CC4BA0300EFE3EE /* DDNewsModel.m */; };
 		344AA1341CC4BA0300EFE3EE /* DDNewsTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 344AA12F1CC4BA0300EFE3EE /* DDNewsTVC.m */; };
 		344AA1351CC4BA0300EFE3EE /* DDNewsTVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 344AA1301CC4BA0300EFE3EE /* DDNewsTVC.storyboard */; };
+		344AA13C1CC4BD2900EFE3EE /* DDNewsDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 344AA13B1CC4BD2900EFE3EE /* DDNewsDetailController.m */; };
 		349019831CC0A07100890D58 /* DDSortView.m in Sources */ = {isa = PBXBuildFile; fileRef = 349019821CC0A07100890D58 /* DDSortView.m */; };
 		349019891CC0A7B300890D58 /* LXReorderableCollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 349019881CC0A7B300890D58 /* LXReorderableCollectionViewFlowLayout.m */; };
 		3490198C1CC10A9600890D58 /* DDSortCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3490198B1CC10A9600890D58 /* DDSortCell.m */; };
@@ -192,6 +193,8 @@
 		344AA12E1CC4BA0300EFE3EE /* DDNewsTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDNewsTVC.h; sourceTree = "<group>"; };
 		344AA12F1CC4BA0300EFE3EE /* DDNewsTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDNewsTVC.m; sourceTree = "<group>"; };
 		344AA1301CC4BA0300EFE3EE /* DDNewsTVC.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = DDNewsTVC.storyboard; sourceTree = "<group>"; };
+		344AA13A1CC4BD2900EFE3EE /* DDNewsDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDNewsDetailController.h; sourceTree = "<group>"; };
+		344AA13B1CC4BD2900EFE3EE /* DDNewsDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDNewsDetailController.m; sourceTree = "<group>"; };
 		349019811CC0A07100890D58 /* DDSortView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDSortView.h; sourceTree = "<group>"; };
 		349019821CC0A07100890D58 /* DDSortView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDSortView.m; sourceTree = "<group>"; };
 		349019871CC0A7B300890D58 /* LXReorderableCollectionViewFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXReorderableCollectionViewFlowLayout.h; sourceTree = "<group>"; };
@@ -335,6 +338,7 @@
 				3406013F1CB766AC000EECE4 /* 频道/分类 */,
 				349019801CC0A01100890D58 /* 分类排序 */,
 				344AA1271CC4BA0300EFE3EE /* 资讯列表 */,
+				344AA1361CC4BCCA00EFE3EE /* 资讯详情 */,
 			);
 			path = "新闻";
 			sourceTree = "<group>";
@@ -460,17 +464,50 @@
 		344AA1271CC4BA0300EFE3EE /* 资讯列表 */ = {
 			isa = PBXGroup;
 			children = (
-				344AA1281CC4BA0300EFE3EE /* DDNewsCache.h */,
-				344AA1291CC4BA0300EFE3EE /* DDNewsCache.m */,
+				344AA12E1CC4BA0300EFE3EE /* DDNewsTVC.h */,
+				344AA12F1CC4BA0300EFE3EE /* DDNewsTVC.m */,
+				344AA1301CC4BA0300EFE3EE /* DDNewsTVC.storyboard */,
 				344AA12A1CC4BA0300EFE3EE /* DDNewsCell.h */,
 				344AA12B1CC4BA0300EFE3EE /* DDNewsCell.m */,
 				344AA12C1CC4BA0300EFE3EE /* DDNewsModel.h */,
 				344AA12D1CC4BA0300EFE3EE /* DDNewsModel.m */,
-				344AA12E1CC4BA0300EFE3EE /* DDNewsTVC.h */,
-				344AA12F1CC4BA0300EFE3EE /* DDNewsTVC.m */,
-				344AA1301CC4BA0300EFE3EE /* DDNewsTVC.storyboard */,
+				344AA1281CC4BA0300EFE3EE /* DDNewsCache.h */,
+				344AA1291CC4BA0300EFE3EE /* DDNewsCache.m */,
 			);
 			path = "资讯列表";
+			sourceTree = "<group>";
+		};
+		344AA1361CC4BCCA00EFE3EE /* 资讯详情 */ = {
+			isa = PBXGroup;
+			children = (
+				344AA1371CC4BCCA00EFE3EE /* 图片详情 */,
+				344AA1381CC4BCCA00EFE3EE /* 新闻详情 */,
+				344AA1391CC4BCCA00EFE3EE /* 视频详情 */,
+			);
+			path = "资讯详情";
+			sourceTree = "<group>";
+		};
+		344AA1371CC4BCCA00EFE3EE /* 图片详情 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "图片详情";
+			sourceTree = "<group>";
+		};
+		344AA1381CC4BCCA00EFE3EE /* 新闻详情 */ = {
+			isa = PBXGroup;
+			children = (
+				344AA13A1CC4BD2900EFE3EE /* DDNewsDetailController.h */,
+				344AA13B1CC4BD2900EFE3EE /* DDNewsDetailController.m */,
+			);
+			path = "新闻详情";
+			sourceTree = "<group>";
+		};
+		344AA1391CC4BCCA00EFE3EE /* 视频详情 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "视频详情";
 			sourceTree = "<group>";
 		};
 		349019801CC0A01100890D58 /* 分类排序 */ = {
@@ -739,6 +776,7 @@
 				340601B51CB7A347000EECE4 /* SDWebImageCompat.m in Sources */,
 				349019831CC0A07100890D58 /* DDSortView.m in Sources */,
 				349019CB1CC1515C00890D58 /* MJRefreshBackNormalFooter.m in Sources */,
+				344AA13C1CC4BD2900EFE3EE /* DDNewsDetailController.m in Sources */,
 				3406016E1CB78337000EECE4 /* AFURLResponseSerialization.m in Sources */,
 				349019CE1CC1515C00890D58 /* MJRefreshNormalHeader.m in Sources */,
 				344AA1341CC4BA0300EFE3EE /* DDNewsTVC.m in Sources */,

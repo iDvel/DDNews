@@ -74,6 +74,9 @@ static NSString * const reuseID  = @"DDChannelCell";
 	DDChannelCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseID forIndexPath:indexPath];
 	DDChannelModel *channel = _list_now[indexPath.row];
 	cell.urlString = channel.urlString;
+	
+	// 如果不加入响应者链，则无法利用NavController进行Push/Pop等操作。
+	[self addChildViewController:(UIViewController *)cell.newsTVC];
 	return cell;
 }
 

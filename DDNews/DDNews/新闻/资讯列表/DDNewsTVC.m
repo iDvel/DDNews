@@ -10,6 +10,7 @@
 #import "DDNewsModel.h"
 #import "DDNewsCell.h"
 #import "DDNewsCache.h"
+#import "DDNewsDetailController.h"
 
 #import "MJRefresh.h"
 
@@ -117,6 +118,15 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	NSLog(@"%s", __func__);
+	DDNewsModel *newsModel = self.dataList[indexPath.row];
+	if (newsModel.photosetID) {
+		NSLog(@"~");
+	} else {
+		// NSLog(@"newsModel.url = %@", newsModel.url); // http://3g.163.com/ntes/16/0315/21/BI7TE54L00963VRO.html
+		// NSLog(@"newsModel.docid = %@", newsModel.docid); // BI7TE54L00963VRO
+		DDNewsDetailController *NewsDetailC = [[DDNewsDetailController alloc] initWithUrlString:newsModel.url];
+		[self.navigationController pushViewController:NewsDetailC animated:YES];
+	}
 }
 
 #pragma mark -
