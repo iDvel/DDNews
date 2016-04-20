@@ -15,8 +15,6 @@
 #import "UIView+Extension.h"
 
 #define AppColor [UIColor colorWithRed:0.00392 green:0.576 blue:0.871 alpha:1]
-#define ScrW [UIScreen mainScreen].bounds.size.width
-#define ScrH [UIScreen mainScreen].bounds.size.height
 
 static NSString * const reuseID  = @"DDChannelCell";
 

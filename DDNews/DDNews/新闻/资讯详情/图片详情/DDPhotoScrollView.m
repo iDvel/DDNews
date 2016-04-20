@@ -7,11 +7,8 @@
 //
 
 #import "DDPhotoScrollView.h"
-
+#import "UIView+Extension.h"
 #import "UIImageView+WebCache.h"
-
-#define ScrW [UIScreen mainScreen].bounds.size.width
-#define ScrH [UIScreen mainScreen].bounds.size.height
 
 @interface DDPhotoScrollView () <UIScrollViewDelegate>
 @property (nonatomic, strong) UIImageView *imageView;

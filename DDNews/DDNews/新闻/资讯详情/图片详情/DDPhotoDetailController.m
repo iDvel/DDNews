@@ -16,15 +16,13 @@
 #import "UIView+Extension.h"
 #import "JT3DScrollView.h"
 
-#define ScrW [UIScreen mainScreen].bounds.size.width
-#define ScrH [UIScreen mainScreen].bounds.size.height
-
 @interface DDPhotoDetailController () <UIScrollViewDelegate>
 @property (nonatomic, strong) DDPhotoModel *photoModel;
 @property (nonatomic, assign) NSInteger currentPage;
 // UI
 @property (nonatomic, strong) UIButton *backButton;
 @property (nonatomic, strong) JT3DScrollView *imageScrollView;
+@property (nonatomic, strong) UIView *descView;
 @property (nonatomic, strong) UIView *bottomView;
 
 @end
@@ -58,6 +56,7 @@
 {
 	_photoModel = photoModel;
 	[self.view insertSubview:self.imageScrollView belowSubview:self.backButton];
+	[self.view insertSubview:self.descView aboveSubview:self.imageScrollView];
 }
 
 
@@ -85,7 +84,7 @@
 	
 	// 改UI：
 	
-//	DDPhotoDetailModel *detailModel = self.photoModel.photos[newIndex];
+	DDPhotoDetailModel *detailModel = self.photoModel.photos[newIndex];
 //	NSLog(@"```%@", detailModel.note);
 }
 
@@ -126,6 +125,43 @@
 	return _imageScrollView;
 }
 
+- (UIView *)descView
+{
+	if (_descView == nil) {
+		UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(0, 0, ScrW, 0)];
+		textView.text = @"按时打算的撒打发的山东省打发斯东省法师打发斯东省法师打发斯东省法师打发斯.完";
+		textView.backgroundColor = [UIColor clearColor];
+		textView.textColor = [UIColor whiteColor];
+		textView.font = [UIFont systemFontOfSize:16];
+		textView.frame = CGRectMake(0, 0, ScrW, textView.contentSize.height);
+		textView.userInteractionEnabled = NO;
+		
+		textView.contentInset = UIEdgeInsetsMake(3000, 0, 0, 0);
+		
+		_descView = [[UIView alloc] initWithFrame:CGRectMake(0, ScrH - 150, ScrW, 999)];
+		_descView.backgroundColor = [UIColor colorWithWhite:0.000 alpha:0.500];
+		[_descView addSubview:textView];
+		_descView.tag = textView.contentSize.height;
+		
+		
+		// 手势
+		UISwipeGestureRecognizer *swipeUp = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipe:)];
+		swipeUp.direction = UISwipeGestureRecognizerDirectionUp;
+		[_descView addGestureRecognizer:swipeUp];
+		UISwipeGestureRecognizer *swipeDown = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipe:)];
+		swipeDown.direction = UISwipeGestureRecognizerDirectionDown;
+		[_descView addGestureRecognizer:swipeDown];
+		
+		
+		UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 100, 30)];
+		button.backgroundColor = [UIColor blueColor];
+		[_descView addSubview:button];
+		button.y = textView.y - 20;
+
+	}
+	return _descView;
+}
+
 - (UIView *)bottomView
 {
 	if (_bottomView == nil) {
@@ -140,6 +176,26 @@
 {
 	[self.navigationController popViewControllerAnimated:YES];
 }
+
+- (void)swipe:(UISwipeGestureRecognizer *)recognizer
+{
+//	NSLog(@"recognizer.direction == %zd", recognizer.direction); // 上4下8
+//	NSLog(@"%@", recognizer.view); // _descView
+	if (recognizer.direction == UISwipeGestureRecognizerDirectionUp) {
+		NSLog(@"up");
+		[UIView animateWithDuration:0.3 animations:^{
+			recognizer.view.y = ScrH - recognizer.view.tag - 50;
+		}];
+	} else if (recognizer.direction == UISwipeGestureRecognizerDirectionDown) {
+		NSLog(@"down");
+		[UIView animateWithDuration:0.3 animations:^{
+			recognizer.view.y = ScrH - 150;
+		}];
+	} else {
+		NSLog(@"wocao");
+	}
+}
+
 
 - (void)dealloc
 {
