@@ -10,8 +10,9 @@
 
 @interface DDPhotoDetailModel : NSObject
 
+/** 单个图片urlString */
 @property (nonatomic, copy) NSString *imgurl;
-
+/** 单个图片的简介 */
 @property (nonatomic, copy) NSString *note;
 
 @property (nonatomic, copy) NSString *photoid;
