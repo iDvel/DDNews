@@ -85,6 +85,7 @@
 		349019D21CC1515C00890D58 /* UIScrollView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 349019BD1CC1515C00890D58 /* UIScrollView+MJExtension.m */; };
 		349019D31CC1515C00890D58 /* UIScrollView+MJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 349019BF1CC1515C00890D58 /* UIScrollView+MJRefresh.m */; };
 		349019D41CC1515C00890D58 /* UIView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 349019C11CC1515C00890D58 /* UIView+MJExtension.m */; };
+		34FE32E01CC75044009776D8 /* DDPhotoDescView.m in Sources */ = {isa = PBXBuildFile; fileRef = 34FE32DF1CC75044009776D8 /* DDPhotoDescView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -263,6 +264,8 @@
 		349019BF1CC1515C00890D58 /* UIScrollView+MJRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+MJRefresh.m"; sourceTree = "<group>"; };
 		349019C01CC1515C00890D58 /* UIView+MJExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+MJExtension.h"; sourceTree = "<group>"; };
 		349019C11CC1515C00890D58 /* UIView+MJExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MJExtension.m"; sourceTree = "<group>"; };
+		34FE32DE1CC75044009776D8 /* DDPhotoDescView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDPhotoDescView.h; sourceTree = "<group>"; };
+		34FE32DF1CC75044009776D8 /* DDPhotoDescView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDPhotoDescView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -518,6 +521,8 @@
 				344AA1481CC4C4E600EFE3EE /* DDPhotoDetailController.m */,
 				344AA1A81CC5476100EFE3EE /* DDPhotoScrollView.h */,
 				344AA1A91CC5476100EFE3EE /* DDPhotoScrollView.m */,
+				34FE32DE1CC75044009776D8 /* DDPhotoDescView.h */,
+				34FE32DF1CC75044009776D8 /* DDPhotoDescView.m */,
 				344AA13D1CC4C4AF00EFE3EE /* DDPhotoDetailModel.h */,
 				344AA13E1CC4C4AF00EFE3EE /* DDPhotoDetailModel.m */,
 				344AA13F1CC4C4AF00EFE3EE /* DDPhotoModel.h */,
@@ -830,6 +835,7 @@
 				349019C61CC1515C00890D58 /* MJRefreshHeader.m in Sources */,
 				3406018A1CB79EAF000EECE4 /* TAAnimatedDotView.m in Sources */,
 				344AA1421CC4C4AF00EFE3EE /* DDPhotoModel.m in Sources */,
+				34FE32E01CC75044009776D8 /* DDPhotoDescView.m in Sources */,
 				349019CA1CC1515C00890D58 /* MJRefreshBackGifFooter.m in Sources */,
 				349019C41CC1515C00890D58 /* MJRefreshComponent.m in Sources */,
 				349019C71CC1515C00890D58 /* MJRefreshAutoGifFooter.m in Sources */,
