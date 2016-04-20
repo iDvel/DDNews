@@ -15,6 +15,7 @@
 
 #import "MJRefresh.h"
 #import "JZNavigationExtension.h"
+#import "UIView+Extension.h"
 
 @interface DDNewsTVC ()
 @property (nonatomic, strong) NSMutableArray *dataList;
@@ -24,6 +25,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+	// 把小菊花漏出来
+	self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 50, 0);
 	
 	__weak typeof(self) weakSelf = self;
 	self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
@@ -119,7 +122,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	NSLog(@"%s", __func__);
+//	NSLog(@"%s", __func__);
+	UITableViewCell * cell = [tableView cellForRowAtIndexPath:indexPath];
+	cell.textLabel.textColor = [UIColor lightGrayColor];
+	
 	DDNewsModel *newsModel = self.dataList[indexPath.row];
 	if (newsModel.photosetID) {
 		DDPhotoDetailController *photoVC = [[DDPhotoDetailController alloc] initWithPhotosetID:newsModel.photosetID];
