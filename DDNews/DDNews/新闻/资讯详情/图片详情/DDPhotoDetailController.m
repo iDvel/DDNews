@@ -11,6 +11,7 @@
 #import "DDPhotoDetailModel.h"
 #import "DDPhotoScrollView.h"
 #import "DDPhotoDescView.h"
+#import "DDBottomView.h"
 
 #import "JZNavigationExtension.h"
 #import "UIImageView+WebCache.h"
@@ -24,7 +25,7 @@
 @property (nonatomic, strong) UIButton *backButton;
 @property (nonatomic, strong) JT3DScrollView *imageScrollView;
 @property (nonatomic, strong) DDPhotoDescView *photoDescView;
-@property (nonatomic, strong) UIView *bottomView;
+@property (nonatomic, strong) DDBottomView *bottomView;
 
 @end
 
@@ -126,11 +127,15 @@ static int temp = -1;
 	return _imageScrollView;
 }
 
-- (UIView *)bottomView
+- (DDBottomView *)bottomView
 {
 	if (_bottomView == nil) {
-		_bottomView = [[UIView alloc] initWithFrame:CGRectMake(0, ScrH - 40, ScrW, 40)];
-		_bottomView.backgroundColor = [UIColor lightGrayColor];
+//		_bottomView = [[DDBottomView alloc] initWithFrame:CGRectMake(0, ScrH - 40, ScrW, 40)];
+//		_bottomView.backgroundColor = [UIColor lightGrayColor];
+		
+		_bottomView = [[NSBundle mainBundle] loadNibNamed:@"DDBottomView" owner:nil options:nil].lastObject;
+		NSLog(@"`%@", _bottomView);
+		_bottomView.frame = CGRectMake(0, ScrH - 40, ScrW, 40);
 	}
 	return _bottomView;
 }

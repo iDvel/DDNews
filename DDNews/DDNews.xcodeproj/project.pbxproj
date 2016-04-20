@@ -86,6 +86,8 @@
 		349019D31CC1515C00890D58 /* UIScrollView+MJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 349019BF1CC1515C00890D58 /* UIScrollView+MJRefresh.m */; };
 		349019D41CC1515C00890D58 /* UIView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 349019C11CC1515C00890D58 /* UIView+MJExtension.m */; };
 		34FE32E01CC75044009776D8 /* DDPhotoDescView.m in Sources */ = {isa = PBXBuildFile; fileRef = 34FE32DF1CC75044009776D8 /* DDPhotoDescView.m */; };
+		34FE32E61CC7A60D009776D8 /* DDBottomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34FE32E51CC7A60D009776D8 /* DDBottomView.xib */; };
+		34FE32E91CC7A8D3009776D8 /* DDBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 34FE32E81CC7A8D3009776D8 /* DDBottomView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -266,6 +268,9 @@
 		349019C11CC1515C00890D58 /* UIView+MJExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MJExtension.m"; sourceTree = "<group>"; };
 		34FE32DE1CC75044009776D8 /* DDPhotoDescView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDPhotoDescView.h; sourceTree = "<group>"; };
 		34FE32DF1CC75044009776D8 /* DDPhotoDescView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDPhotoDescView.m; sourceTree = "<group>"; };
+		34FE32E51CC7A60D009776D8 /* DDBottomView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DDBottomView.xib; sourceTree = "<group>"; };
+		34FE32E71CC7A8D3009776D8 /* DDBottomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDBottomView.h; sourceTree = "<group>"; };
+		34FE32E81CC7A8D3009776D8 /* DDBottomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDBottomView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -703,6 +708,9 @@
 				344AA1A91CC5476100EFE3EE /* DDPhotoScrollView.m */,
 				34FE32DE1CC75044009776D8 /* DDPhotoDescView.h */,
 				34FE32DF1CC75044009776D8 /* DDPhotoDescView.m */,
+				34FE32E71CC7A8D3009776D8 /* DDBottomView.h */,
+				34FE32E81CC7A8D3009776D8 /* DDBottomView.m */,
+				34FE32E51CC7A60D009776D8 /* DDBottomView.xib */,
 				344AA1AE1CC56CC000EFE3EE /* JT3DScrollView */,
 			);
 			name = View;
@@ -815,6 +823,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				344AA1351CC4BA0300EFE3EE /* DDNewsTVC.storyboard in Resources */,
+				34FE32E61CC7A60D009776D8 /* DDBottomView.xib in Resources */,
 				3406012C1CB635EC000EECE4 /* topic_news.json in Resources */,
 				340601001CB62CEC000EECE4 /* LaunchScreen.storyboard in Resources */,
 				349019D01CC1515C00890D58 /* MJRefresh.bundle in Resources */,
@@ -895,6 +904,7 @@
 				3406018D1CB79EAF000EECE4 /* SDCollectionViewCell.m in Sources */,
 				3406016F1CB78337000EECE4 /* AFURLSessionManager.m in Sources */,
 				344AA1AD1CC56BFF00EFE3EE /* JT3DScrollView.m in Sources */,
+				34FE32E91CC7A8D3009776D8 /* DDBottomView.m in Sources */,
 				3406014D1CB76700000EECE4 /* UIView+Extension.m in Sources */,
 				344AA14E1CC4C61200EFE3EE /* UINavigationController+JZExtension.m in Sources */,
 				340601461CB766AC000EECE4 /* DDNewsViewController.m in Sources */,
