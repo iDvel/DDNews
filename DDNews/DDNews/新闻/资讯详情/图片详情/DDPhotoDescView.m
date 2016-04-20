@@ -22,7 +22,7 @@
 		UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(0, 0, ScrW, 0)];
 		textView.text = desc;
 		textView.backgroundColor = [UIColor clearColor];
-		textView.textColor = [UIColor whiteColor];
+		textView.textColor = [UIColor colorWithWhite:0.896 alpha:1.000];
 		textView.font = [UIFont systemFontOfSize:16];
 		// 这个37算的我莫名其妙，得不到正确的textView高度！！！！
 		textView.frame = CGRectMake(0, 0, ScrW, textView.contentSize.height + 37);

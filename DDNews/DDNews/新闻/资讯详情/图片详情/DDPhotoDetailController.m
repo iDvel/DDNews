@@ -57,9 +57,7 @@
 {
 	_photoModel = photoModel;
 	[self.view insertSubview:self.imageScrollView belowSubview:self.backButton];
-//	[self.view insertSubview:self.descView aboveSubview:self.imageScrollView];
-//	_photoDescView = [DDPhotoDescView new];
-//	[self.view insertSubview:_photoDescView aboveSubview:self.imageScrollView];
+	[self addObserver:self forKeyPath:@"currentPage" options:NSKeyValueObservingOptionOld|NSKeyValueObservingOptionNew|NSKeyValueObservingOptionInitial context:nil];
 }
 
 
@@ -74,9 +72,6 @@
 static int temp = -1;
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context
 {
-//	NSLog(@"object = %@", object);  // DDPhotoDetailController
-//	NSLog(@"change = %@", change[@"old"]);
-	
 	// 获取新旧索引
 	int oldIndex = [change[@"old"] intValue];
 	int newIndex = [change[@"new"] intValue];
@@ -85,10 +80,7 @@ static int temp = -1;
 	if (temp == newIndex) {return;}
 	temp = newIndex;
 	
-	// 改UI：
-	
 	DDPhotoDetailModel *detailModel = _photoModel.photos[newIndex];
-	
 	// 先remove
 	[_photoDescView removeFromSuperview];
 	// 再加入
@@ -123,7 +115,6 @@ static int temp = -1;
 		_imageScrollView.effect = arc4random_uniform(3) + 1; // 切换的动画效果,随机枚举中的1，2，3三种效果。
 		_imageScrollView.clipsToBounds = YES;
 		_imageScrollView.delegate = self;
-		[self addObserver:self forKeyPath:@"currentPage" options:NSKeyValueObservingOptionOld|NSKeyValueObservingOptionNew|NSKeyValueObservingOptionInitial context:nil];
 
 		// 设置小ScrollView（装载imageView的scrollView）
 		for (int i = 0; i < self.photoModel.photos.count; i++) {
@@ -135,40 +126,6 @@ static int temp = -1;
 	}
 	return _imageScrollView;
 }
-
-//- (UIView *)descView
-//{
-//	if (_descView == nil) {
-//		UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(0, 0, ScrW, 0)];
-//		textView.text = @"按时打算的撒打发的山东省打发斯东省法师打发斯东省法师打发斯东省法师打发斯.完";
-//		textView.backgroundColor = [UIColor clearColor];
-//		textView.textColor = [UIColor whiteColor];
-//		textView.font = [UIFont systemFontOfSize:16];
-//		textView.frame = CGRectMake(0, 0, ScrW, textView.contentSize.height);
-//		textView.userInteractionEnabled = NO;
-//		
-//		_descView = [[UIView alloc] initWithFrame:CGRectMake(0, ScrH - 150, ScrW, 999)];
-//		_descView.backgroundColor = [UIColor colorWithWhite:0.000 alpha:0.500];
-//		[_descView addSubview:textView];
-//		_descView.tag = textView.contentSize.height;
-//		
-//		// 手势
-//		UISwipeGestureRecognizer *swipeUp = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipe:)];
-//		swipeUp.direction = UISwipeGestureRecognizerDirectionUp;
-//		[_descView addGestureRecognizer:swipeUp];
-//		UISwipeGestureRecognizer *swipeDown = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipe:)];
-//		swipeDown.direction = UISwipeGestureRecognizerDirectionDown;
-//		[_descView addGestureRecognizer:swipeDown];
-//		
-//		
-//		UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 100, 30)];
-//		button.backgroundColor = [UIColor blueColor];
-//		[_descView addSubview:button];
-//		button.y = textView.y - 20;
-//
-//	}
-//	return _descView;
-//}
 
 - (UIView *)bottomView
 {
@@ -185,29 +142,8 @@ static int temp = -1;
 	[self.navigationController popViewControllerAnimated:YES];
 }
 
-//- (void)swipe:(UISwipeGestureRecognizer *)recognizer
-//{
-////	NSLog(@"recognizer.direction == %zd", recognizer.direction); // 上4下8
-////	NSLog(@"%@", recognizer.view); // _descView
-//	if (recognizer.direction == UISwipeGestureRecognizerDirectionUp) {
-//		NSLog(@"up");
-//		[UIView animateWithDuration:0.3 animations:^{
-//			recognizer.view.y = ScrH - recognizer.view.tag - 50;
-//		}];
-//	} else if (recognizer.direction == UISwipeGestureRecognizerDirectionDown) {
-//		NSLog(@"down");
-//		[UIView animateWithDuration:0.3 animations:^{
-//			recognizer.view.y = ScrH - 150;
-//		}];
-//	} else {
-//		NSLog(@"wocao");
-//	}
-//}
-
-
 - (void)dealloc
 {
-	NSLog(@"~");
 	temp= -1;
 	[self removeObserver:self forKeyPath:@"currentPage"];
 }

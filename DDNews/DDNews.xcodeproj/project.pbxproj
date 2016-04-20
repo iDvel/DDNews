@@ -519,15 +519,8 @@
 			children = (
 				344AA1471CC4C4E600EFE3EE /* DDPhotoDetailController.h */,
 				344AA1481CC4C4E600EFE3EE /* DDPhotoDetailController.m */,
-				344AA1A81CC5476100EFE3EE /* DDPhotoScrollView.h */,
-				344AA1A91CC5476100EFE3EE /* DDPhotoScrollView.m */,
-				34FE32DE1CC75044009776D8 /* DDPhotoDescView.h */,
-				34FE32DF1CC75044009776D8 /* DDPhotoDescView.m */,
-				344AA13D1CC4C4AF00EFE3EE /* DDPhotoDetailModel.h */,
-				344AA13E1CC4C4AF00EFE3EE /* DDPhotoDetailModel.m */,
-				344AA13F1CC4C4AF00EFE3EE /* DDPhotoModel.h */,
-				344AA1401CC4C4AF00EFE3EE /* DDPhotoModel.m */,
-				344AA1AE1CC56CC000EFE3EE /* JT3DScrollView */,
+				34FE32E21CC781B0009776D8 /* View */,
+				34FE32E11CC7811A009776D8 /* Model */,
 			);
 			path = "图片详情";
 			sourceTree = "<group>";
@@ -690,6 +683,29 @@
 				349019B71CC1515C00890D58 /* MJRefreshStateHeader.m */,
 			);
 			path = Header;
+			sourceTree = "<group>";
+		};
+		34FE32E11CC7811A009776D8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				344AA13D1CC4C4AF00EFE3EE /* DDPhotoDetailModel.h */,
+				344AA13E1CC4C4AF00EFE3EE /* DDPhotoDetailModel.m */,
+				344AA13F1CC4C4AF00EFE3EE /* DDPhotoModel.h */,
+				344AA1401CC4C4AF00EFE3EE /* DDPhotoModel.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		34FE32E21CC781B0009776D8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				344AA1A81CC5476100EFE3EE /* DDPhotoScrollView.h */,
+				344AA1A91CC5476100EFE3EE /* DDPhotoScrollView.m */,
+				34FE32DE1CC75044009776D8 /* DDPhotoDescView.h */,
+				34FE32DF1CC75044009776D8 /* DDPhotoDescView.m */,
+				344AA1AE1CC56CC000EFE3EE /* JT3DScrollView */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

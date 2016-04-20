@@ -84,7 +84,6 @@
 	UITapGestureRecognizer *recognizer = [UITapGestureRecognizer new];
 	[recognizer setValue:scrollView forKey:@"view"];
 	[self doubleTapOnScrollView:recognizer];
-
 }
 
 
