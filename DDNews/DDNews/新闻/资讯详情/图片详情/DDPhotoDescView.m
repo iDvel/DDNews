@@ -18,6 +18,7 @@
 {
 	self = [super init];
 	if (self) {
+		// 描述文本
 		UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(0, 0, ScrW, 0)];
 		textView.text = desc;
 		textView.backgroundColor = [UIColor clearColor];
@@ -27,11 +28,18 @@
 		textView.frame = CGRectMake(0, 0, ScrW, textView.contentSize.height + 37);
 		textView.userInteractionEnabled = NO;
 		
+		// self
 		self = [[DDPhotoDescView alloc] initWithFrame:CGRectMake(0, ScrH - DescViewDefaultHeight, ScrW, 999)];
 		self.backgroundColor = [UIColor colorWithWhite:0.000 alpha:0.500];
 		[self addSubview:textView];
 		// textView.height 和 textView.contentSize.height 我也是日了狗了。
 		self.tag = textView.height > DescViewDefaultHeight ? textView.contentSize.height : DescViewDefaultHeight - 50;
+		
+		// 标题
+		UIView *titleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScrW, 30)];
+		titleView.backgroundColor = [UIColor colorWithWhite:0.000 alpha:0.500];
+		titleView.y = textView.y - 30;
+		[self addSubview:titleView];
 		
 		// 手势
 		UISwipeGestureRecognizer *swipeUp = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipe:)];
@@ -40,17 +48,28 @@
 		UISwipeGestureRecognizer *swipeDown = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipe:)];
 		swipeDown.direction = UISwipeGestureRecognizerDirectionDown;
 		[self addGestureRecognizer:swipeDown];
+		// 标题也加上
+		[titleView addGestureRecognizer:swipeUp];
+		[titleView addGestureRecognizer:swipeDown];
 		
 		
-		UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 100, 30)];
-		button.backgroundColor = [UIColor blueColor];
-		[self addSubview:button];
-		button.y = textView.y - 20;
-
 	}
 	return self;
 }
 
+/** 为了使超出self范围titleView也能响应手势，重写hitTest方法 */
+- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
+	UIView *view = [super hitTest:point withEvent:event];
+	if (view == nil) {
+		for (UIView *subView in self.subviews) {
+			CGPoint p = [subView convertPoint:point fromView:self];
+			if (CGRectContainsPoint(subView.bounds, p)) {
+				view = subView;
+			}
+		}
+	}
+	return view;
+}
 
 - (void)swipe:(UISwipeGestureRecognizer *)recognizer
 {
