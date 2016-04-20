@@ -21,7 +21,7 @@
 	self = [super initWithFrame:frame];
 	if (self) {
 		// 设置图片
-		_imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, ScrW, ScrH)];
+		_imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, ScrW, ScrH - 50)];
 		_imageView.contentMode = UIViewContentModeScaleAspectFit;
 		_imageView.userInteractionEnabled = YES;
 		[_imageView sd_setImageWithURL:[NSURL URLWithString:urlString]
