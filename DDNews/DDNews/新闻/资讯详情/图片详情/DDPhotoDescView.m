@@ -66,15 +66,20 @@
 		[titleLabel sizeToFit];
 		[titleView addSubview:titleLabel];
 		
-		// 手势
+		// 手势 ***一个view可以有多个手势，一个手势只能对应一个view
 		UISwipeGestureRecognizer *swipeUp	= [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipe:)];
 		UISwipeGestureRecognizer *swipeDown = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipe:)];
 		swipeUp.direction	= UISwipeGestureRecognizerDirectionUp;
 		swipeDown.direction = UISwipeGestureRecognizerDirectionDown;
-		[self	   addGestureRecognizer:swipeUp];
-		[self	   addGestureRecognizer:swipeDown];
-		[titleView addGestureRecognizer:swipeUp];
-		[titleView addGestureRecognizer:swipeDown];
+		[self addGestureRecognizer:swipeUp];
+		[self addGestureRecognizer:swipeDown];
+		
+		UISwipeGestureRecognizer *swipeUp2   = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipe:)];
+		UISwipeGestureRecognizer *swipeDown2 = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipe:)];
+		swipeUp2.direction	 = UISwipeGestureRecognizerDirectionUp;
+		swipeDown2.direction = UISwipeGestureRecognizerDirectionDown;
+		[titleView addGestureRecognizer:swipeUp2];
+		[titleView addGestureRecognizer:swipeDown2];
 	}
 	return self;
 }
