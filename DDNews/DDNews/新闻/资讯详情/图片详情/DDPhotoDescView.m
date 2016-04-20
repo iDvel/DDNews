@@ -14,7 +14,7 @@
 
 @implementation DDPhotoDescView
 
-- (instancetype)initWithDesc:(NSString *)desc
+- (instancetype)initWithTitle:(NSString *)title desc:(NSString *)desc index:(NSInteger)index totalCount:(NSInteger)totalCount
 {
 	self = [super init];
 	if (self) {
@@ -35,24 +35,46 @@
 		// textView.height 和 textView.contentSize.height 我也是日了狗了。
 		self.tag = textView.height > DescViewDefaultHeight ? textView.contentSize.height : DescViewDefaultHeight - 50;
 		
-		// 标题
+		// 标题View
 		UIView *titleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScrW, 30)];
 		titleView.backgroundColor = [UIColor colorWithWhite:0.000 alpha:0.500];
 		titleView.y = textView.y - 30;
 		[self addSubview:titleView];
 		
+		// 标题View里的index
+		UILabel *indexLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
+		NSMutableAttributedString *aStrM = [[NSMutableAttributedString alloc]
+											initWithString:[NSString stringWithFormat:@"%zd", index + 1]
+											attributes:@{NSFontAttributeName: [UIFont boldSystemFontOfSize:18]}];
+		[aStrM appendAttributedString:[[NSAttributedString alloc] initWithString:@"/"]];
+		[aStrM appendAttributedString:[[NSAttributedString alloc]
+									   initWithString:[NSString stringWithFormat:@"%zd", totalCount]
+									   attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:12]}]];
+		[aStrM addAttribute:NSKernAttributeName value:@2 range:NSMakeRange(0, aStrM.length)];
+		indexLabel.attributedText = aStrM;
+		indexLabel.textAlignment = NSTextAlignmentRight;
+		indexLabel.textColor = [UIColor whiteColor];
+		[indexLabel sizeToFit];
+		indexLabel.x = ScrW - indexLabel.width - 5;
+		[titleView addSubview:indexLabel];
+		
+		// 标题View里的标题
+		UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 5, indexLabel.left, 30)];
+		titleLabel.text = title;
+		titleLabel.textColor = [UIColor whiteColor];
+		titleLabel.font = [UIFont boldSystemFontOfSize:20];
+		[titleLabel sizeToFit];
+		[titleView addSubview:titleLabel];
+		
 		// 手势
-		UISwipeGestureRecognizer *swipeUp = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipe:)];
-		swipeUp.direction = UISwipeGestureRecognizerDirectionUp;
-		[self addGestureRecognizer:swipeUp];
+		UISwipeGestureRecognizer *swipeUp	= [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipe:)];
 		UISwipeGestureRecognizer *swipeDown = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipe:)];
+		swipeUp.direction	= UISwipeGestureRecognizerDirectionUp;
 		swipeDown.direction = UISwipeGestureRecognizerDirectionDown;
-		[self addGestureRecognizer:swipeDown];
-		// 标题也加上
+		[self	   addGestureRecognizer:swipeUp];
+		[self	   addGestureRecognizer:swipeDown];
 		[titleView addGestureRecognizer:swipeUp];
 		[titleView addGestureRecognizer:swipeDown];
-		
-		
 	}
 	return self;
 }

@@ -42,4 +42,25 @@
 /** UIView 的高度 bounds */
 @property (nonatomic, assign) CGFloat boundsHeight;
 
+/**
+ *  9.上 < Shortcut for frame.origin.y
+ */
+@property (nonatomic) CGFloat top;
+
+/**
+ *  10.下 < Shortcut for frame.origin.y + frame.size.height
+ */
+@property (nonatomic) CGFloat bottom;
+
+/**
+ *  11.左 < Shortcut for frame.origin.x.
+ */
+@property (nonatomic) CGFloat left;
+
+/**
+ *  12.右 < Shortcut for frame.origin.x + frame.size.width
+ */
+@property (nonatomic) CGFloat right;
+
+
 @end

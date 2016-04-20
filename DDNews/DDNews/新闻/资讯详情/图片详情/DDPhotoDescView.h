@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface DDPhotoDescView : UIView
-- (instancetype)initWithDesc:(NSString *)desc;
+- (instancetype)initWithTitle:(NSString *)title desc:(NSString *)desc index:(NSInteger)index totalCount:(NSInteger)totalCount;
 @end

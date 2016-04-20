@@ -87,12 +87,15 @@ static int temp = -1;
 	
 	// 改UI：
 	
-	DDPhotoDetailModel *detailModel = self.photoModel.photos[newIndex];
+	DDPhotoDetailModel *detailModel = _photoModel.photos[newIndex];
 	
 	// 先remove
 	[_photoDescView removeFromSuperview];
 	// 再加入
-	_photoDescView = [[DDPhotoDescView alloc] initWithDesc:detailModel.note];
+	_photoDescView = [[DDPhotoDescView alloc] initWithTitle:_photoModel.setname
+													   desc:detailModel.note
+													  index:newIndex
+												 totalCount:_photoModel.photos.count];
 	[self.view insertSubview:_photoDescView belowSubview:self.bottomView];
 }
 
