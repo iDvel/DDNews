@@ -35,6 +35,11 @@ static NSString * const reuseID2 = @"OthersCell";
 		label.font = [UIFont systemFontOfSize:15];
 		[label sizeToFit];
 		[self addSubview:label];
+		// 右上角加个XX
+		UIButton *closeBtn = [[UIButton alloc] initWithFrame:CGRectMake(ScrW-44, 0, 44, 44)];
+		[closeBtn setImage:[UIImage imageNamed:@"ks_home_plus"] forState:UIControlStateNormal];
+		[closeBtn addTarget:self action:@selector(arrowButtonClick) forControlEvents:UIControlEventTouchUpInside];
+		[self addSubview:closeBtn];
 		
 		// 中间的排序collectionView,
 		LXReorderableCollectionViewFlowLayout *flowLayout = [LXReorderableCollectionViewFlowLayout new];
