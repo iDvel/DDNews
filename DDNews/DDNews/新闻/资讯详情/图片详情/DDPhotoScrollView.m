@@ -90,7 +90,9 @@
 #pragma mark - 手势
 - (void)singleTapOnScrollView
 {
-	NSLog(@"tap~");
+	if (self.singleTapBlock) {
+		self.singleTapBlock();
+	}
 }
 
 - (void)doubleTapOnScrollView:(UITapGestureRecognizer *)recognizer

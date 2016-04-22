@@ -27,6 +27,7 @@
 @property (nonatomic, strong) DDPhotoDescView *photoDescView;
 @property (nonatomic, strong) DDBottomView *bottomView;
 
+@property (nonatomic, assign) BOOL isDisappear;
 @end
 
 @implementation DDPhotoDetailController
@@ -80,6 +81,9 @@ static int temp = -1;
 	if (temp == newIndex) {return;}
 	temp = newIndex;
 	
+	// 如果已经消失了，就不展现描述文本了。
+	if (_isDisappear == YES) {return;}
+	
 	DDPhotoDetailModel *detailModel = _photoModel.photos[newIndex];
 	// 先remove
 	[_photoDescView removeFromSuperview];
@@ -108,7 +112,7 @@ static int temp = -1;
 - (JT3DScrollView *)imageScrollView
 {
 	if (_imageScrollView == nil) {
-		// 设置大ScrollView
+		// 设置大ScrollView  30:适当提高下imageView的高度，否则上面显得太空洞
 		_imageScrollView = [[JT3DScrollView alloc] initWithFrame:CGRectMake(0, 0, ScrW, ScrH - 30)];
 		_imageScrollView.contentSize = CGSizeMake(_photoModel.photos.count * ScrW, ScrH - 30);
 		_imageScrollView.showsHorizontalScrollIndicator = NO;
@@ -119,8 +123,38 @@ static int temp = -1;
 		// 设置小ScrollView（装载imageView的scrollView）
 		for (int i = 0; i < self.photoModel.photos.count; i++) {
 			DDPhotoDetailModel *detailModel = self.photoModel.photos[i];
-			DDPhotoScrollView *photoScrollView = [[DDPhotoScrollView alloc] initWithFrame:CGRectMake(ScrW * i, 0, ScrW, ScrH - 30)
-																				urlString:detailModel.imgurl];
+			DDPhotoScrollView *photoScrollView = [[DDPhotoScrollView alloc] initWithFrame:CGRectMake(ScrW * i, 0, ScrW, ScrH - 30) urlString:detailModel.imgurl];
+			// singleTapBlock回调：让所有UI，除了图片，全部消失
+			__weak typeof(self) weakSelf = self;
+			photoScrollView.singleTapBlock = ^{
+				NSLog(@"tap~");
+				// 如果已经消失，就出现
+				if (_isDisappear == YES) {
+					[weakSelf.view.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+						if (![obj isKindOfClass:[JT3DScrollView class]]) {
+							[UIView animateWithDuration:0.5 animations:^{
+								obj.alpha = 1;
+							} completion:^(BOOL finished) {
+								obj.userInteractionEnabled = YES;
+							}];
+						}
+					}];
+					_isDisappear = NO;
+					return;
+				} else { // 消失
+					[weakSelf.view.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+						if (![obj isKindOfClass:[JT3DScrollView class]]) {
+							[UIView animateWithDuration:0.5 animations:^{
+								obj.alpha = 0;
+							} completion:^(BOOL finished) {
+								obj.userInteractionEnabled = NO;
+							}];
+						}
+					}];
+					_isDisappear = YES;
+				}
+				
+			};
 			[_imageScrollView addSubview:photoScrollView];
 		}
 	}

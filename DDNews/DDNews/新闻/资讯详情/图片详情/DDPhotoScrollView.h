@@ -9,5 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface DDPhotoScrollView : UIScrollView
+
+@property (nonatomic, copy) void(^singleTapBlock)();
+
 - (instancetype)initWithFrame:(CGRect)frame urlString:(NSString *)urlString;
 @end
