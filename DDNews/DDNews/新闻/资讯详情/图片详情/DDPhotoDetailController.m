@@ -82,6 +82,7 @@ static int temp = -1;
 	temp = newIndex;
 	
 	// 如果已经消失了，就不展现描述文本了。
+	NSLog(@"````%zd", _isDisappear);
 	if (_isDisappear == YES) {return;}
 	
 	DDPhotoDetailModel *detailModel = _photoModel.photos[newIndex];
@@ -112,9 +113,9 @@ static int temp = -1;
 - (JT3DScrollView *)imageScrollView
 {
 	if (_imageScrollView == nil) {
-		// 设置大ScrollView  30:适当提高下imageView的高度，否则上面显得太空洞
-		_imageScrollView = [[JT3DScrollView alloc] initWithFrame:CGRectMake(0, 0, ScrW, ScrH - 30)];
-		_imageScrollView.contentSize = CGSizeMake(_photoModel.photos.count * ScrW, ScrH - 30);
+		// 设置大ScrollView  40:适当提高下imageView的高度，否则上面显得太空洞
+		_imageScrollView = [[JT3DScrollView alloc] initWithFrame:CGRectMake(0, 0, ScrW, ScrH - 40)];
+		_imageScrollView.contentSize = CGSizeMake(_photoModel.photos.count * ScrW, ScrH - 40);
 		_imageScrollView.showsHorizontalScrollIndicator = NO;
 		_imageScrollView.effect = arc4random_uniform(3) + 1; // 切换的动画效果,随机枚举中的1，2，3三种效果。
 		_imageScrollView.clipsToBounds = YES;
@@ -123,7 +124,7 @@ static int temp = -1;
 		// 设置小ScrollView（装载imageView的scrollView）
 		for (int i = 0; i < self.photoModel.photos.count; i++) {
 			DDPhotoDetailModel *detailModel = self.photoModel.photos[i];
-			DDPhotoScrollView *photoScrollView = [[DDPhotoScrollView alloc] initWithFrame:CGRectMake(ScrW * i, 0, ScrW, ScrH - 30) urlString:detailModel.imgurl];
+			DDPhotoScrollView *photoScrollView = [[DDPhotoScrollView alloc] initWithFrame:CGRectMake(ScrW * i, 0, ScrW, ScrH - 40) urlString:detailModel.imgurl];
 			// singleTapBlock回调：让所有UI，除了图片，全部消失
 			__weak typeof(self) weakSelf = self;
 			photoScrollView.singleTapBlock = ^{
@@ -134,6 +135,7 @@ static int temp = -1;
 						if (![obj isKindOfClass:[JT3DScrollView class]]) {
 							[UIView animateWithDuration:0.5 animations:^{
 								obj.alpha = 1;
+								weakSelf.view.backgroundColor = [UIColor colorWithRed:0.174 green:0.174 blue:0.164 alpha:1.000];
 							} completion:^(BOOL finished) {
 								obj.userInteractionEnabled = YES;
 							}];
@@ -146,6 +148,7 @@ static int temp = -1;
 						if (![obj isKindOfClass:[JT3DScrollView class]]) {
 							[UIView animateWithDuration:0.5 animations:^{
 								obj.alpha = 0;
+								weakSelf.view.backgroundColor = [UIColor blackColor];
 							} completion:^(BOOL finished) {
 								obj.userInteractionEnabled = NO;
 							}];
@@ -164,11 +167,7 @@ static int temp = -1;
 - (DDBottomView *)bottomView
 {
 	if (_bottomView == nil) {
-//		_bottomView = [[DDBottomView alloc] initWithFrame:CGRectMake(0, ScrH - 40, ScrW, 40)];
-//		_bottomView.backgroundColor = [UIColor lightGrayColor];
-		
 		_bottomView = [[NSBundle mainBundle] loadNibNamed:@"DDBottomView" owner:nil options:nil].lastObject;
-		NSLog(@"`%@", _bottomView);
 		_bottomView.frame = CGRectMake(0, ScrH - 40, ScrW, 40);
 	}
 	return _bottomView;
