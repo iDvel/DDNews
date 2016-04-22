@@ -40,6 +40,12 @@
 	UIView*view = [UIView new];
 	view.backgroundColor= [UIColor clearColor];
 	[self.tableView setTableFooterView:view];
+	
+	// 通知
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(enterBackGround)
+												 name:UIApplicationDidEnterBackgroundNotification
+											   object:nil];
 }
 
 - (void)setUrlString:(NSString *)urlString
@@ -60,10 +66,11 @@
 	}
 }
 
-- (void)viewWillDisappear:(BOOL)animated
-{
-	[[DDNewsCache sharedInstance] removeAllObjects];
-}
+
+//- (void)viewWillDisappear:(BOOL)animated
+//{
+//	[[DDNewsCache sharedInstance] removeAllObjects];
+//}
 
 
 #pragma mark 刷新
@@ -123,8 +130,11 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
 //	NSLog(@"%s", __func__);
-	UITableViewCell * cell = [tableView cellForRowAtIndexPath:indexPath];
-	cell.textLabel.textColor = [UIColor lightGrayColor];
+//	UITableViewCell * cell = [tableView cellForRowAtIndexPath:indexPath];
+//	cell.textLabel.textColor = [UIColor lightGrayColor];
+	DDNewsCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+	cell.titleLabel.textColor = [UIColor lightGrayColor];
+	[[DDNewsCache sharedInstance] addObject:cell.titleLabel.text];
 	
 	DDNewsModel *newsModel = self.dataList[indexPath.row];
 	if (newsModel.photosetID) {
@@ -141,6 +151,12 @@
 }
 
 #pragma mark -
+- (void)enterBackGround
+{
+	[[DDNewsCache sharedInstance] removeAllObjects];
+}
+
+
 /** 轮播点击事件 */
 - (void)setupCycleImageClickWithCell:(DDNewsCell *)cell newsModel:(DDNewsModel *)newsModel
 {

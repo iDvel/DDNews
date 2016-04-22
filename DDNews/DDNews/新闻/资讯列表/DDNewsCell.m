@@ -8,6 +8,7 @@
 
 #import "DDNewsCell.h"
 #import "DDNewsModel.h"
+#import "DDNewsCache.h"
 
 #import "UIImageView+WebCache.h"
 #import "SDCycleScrollView.h"
@@ -16,7 +17,6 @@
 @interface DDNewsCell () <SDCycleScrollViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIView *cycleImageView;
-@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *digestLabel;
 @property (weak, nonatomic) IBOutlet UILabel *replyLabel;
 /** 左图右字的单个图片，三图中的第一个图片 */
@@ -39,6 +39,11 @@
 	[self setupCycleImageCell:newsModel];
 	// 标题
 	self.titleLabel.text = newsModel.title;
+	if ([[DDNewsCache sharedInstance] containsObject:self.titleLabel.text]) {
+		self.titleLabel.textColor = [UIColor lightGrayColor];
+	} else {
+		self.titleLabel.textColor = [UIColor blackColor];
+	}
 	// 标题
 	self.digestLabel.text = newsModel.digest;
 	// 跟帖数

@@ -17,6 +17,9 @@
 @property (nonatomic, copy) void(^cycleImageClickBlock)(NSInteger idx);
 
 
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+
+
 + (NSString *)cellReuseID:(DDNewsModel *)newsModel;
 + (CGFloat)cellForHeight:(DDNewsModel *)newsModel;
 
