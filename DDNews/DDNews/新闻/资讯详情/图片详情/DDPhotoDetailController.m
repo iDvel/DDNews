@@ -197,8 +197,20 @@ static int temp = -1;
 		};
 		
 		//收藏回调
-		_bottomView.collectBlock = ^{
-			NSLog(@"收藏");
+		_bottomView.collectBlock = ^(UIButton *button){
+			NSLog(@"收藏 button.selected = %zd", button.selected);
+			button.selected = !button.selected;
+			if (button.selected) {
+				weakSelf.hud = [MBProgressHUD showHUDAddedTo:weakSelf.view animated:YES];
+				weakSelf.hud.mode = MBProgressHUDModeText;
+				weakSelf.hud.label.text = @"收藏成功！";
+				[weakSelf.hud hideAnimated:YES afterDelay:1];
+			} else {
+				weakSelf.hud = [MBProgressHUD showHUDAddedTo:weakSelf.view animated:YES];
+				weakSelf.hud.mode = MBProgressHUDModeText;
+				weakSelf.hud.label.text = @"取消收藏！";
+				[weakSelf.hud hideAnimated:YES afterDelay:1];
+			}
 		};
 		
 		// 保存到相册回调
@@ -228,17 +240,13 @@ static int temp = -1;
 - (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo{
 	if (!error) {
 		NSLog(@"error");
-		_hud.mode = MBProgressHUDModeCustomView;
+		_hud.mode = MBProgressHUDModeText;
 		_hud.label.text = @"保存成功！";
-		dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-			[_hud hideAnimated:YES];
-		});
+		[_hud hideAnimated:YES afterDelay:1];
 	} else {
-		_hud.mode = MBProgressHUDModeCustomView;
+		_hud.mode = MBProgressHUDModeText;
 		_hud.label.text = @"保存失败！";
-		dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-			[_hud hideAnimated:YES];
-		});
+		[_hud hideAnimated:YES afterDelay:1];
 	}
 }
 

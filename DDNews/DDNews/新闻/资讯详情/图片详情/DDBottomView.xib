@@ -60,7 +60,7 @@
                     </constraints>
                     <state key="normal" image="comment_ collect"/>
                     <connections>
-                        <action selector="collecClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="OUT-Ic-fS9"/>
+                        <action selector="collecClick:" destination="iN0-l3-epB" eventType="touchDown" id="KeW-7l-t94"/>
                     </connections>
                 </button>
             </subviews>
@@ -85,6 +85,7 @@
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="collectBtn" destination="cYW-CK-d2v" id="nho-Zx-nGs"/>
                 <outlet property="commentCount" destination="0nI-ER-AI8" id="lcR-mB-96t"/>
             </connections>
             <point key="canvasLocation" x="460.5" y="371"/>

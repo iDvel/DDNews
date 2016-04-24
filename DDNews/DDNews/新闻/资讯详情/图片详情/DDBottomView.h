@@ -17,7 +17,7 @@
 /** write按钮Block回调 */
 @property (nonatomic, copy) void(^writeBlock)();
 /** 收藏按钮Block回调 */
-@property (nonatomic, copy) void(^collectBlock)();
+@property (nonatomic, copy) void(^collectBlock)(UIButton *button);
 /** download按钮Block回调 */
 @property (nonatomic, copy) void(^downloadBlock)();
 @end

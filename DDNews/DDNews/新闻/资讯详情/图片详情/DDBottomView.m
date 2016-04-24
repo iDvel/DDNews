@@ -9,6 +9,7 @@
 #import "DDBottomView.h"
 
 @interface DDBottomView ()
+@property (weak, nonatomic) IBOutlet UIButton *collectBtn;
 
 @end
 
@@ -17,6 +18,8 @@
 - (void)awakeFromNib
 {
 //	[self.commentCount setTitle:@" 23148" forState:UIControlStateNormal];
+	[_collectBtn setImage:[UIImage imageNamed:@"comment_ collect"] forState:UIControlStateNormal];
+	[_collectBtn setImage:[UIImage imageNamed:@"comment_ collect_selected"] forState:UIControlStateSelected];
 }
 
 - (IBAction)backBtn:(id)sender
@@ -43,7 +46,7 @@
 - (IBAction)collecClick:(id)sender
 {
 	if (self.collectBlock) {
-		self.collectBlock();
+		self.collectBlock(sender);
 	}
 }
 
