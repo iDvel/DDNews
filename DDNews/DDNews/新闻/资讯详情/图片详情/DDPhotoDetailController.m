@@ -17,6 +17,7 @@
 #import "UIImageView+WebCache.h"
 #import "UIView+Extension.h"
 #import "JT3DScrollView.h"
+#import "MBProgressHUD.h"
 
 @interface DDPhotoDetailController () <UIScrollViewDelegate>
 @property (nonatomic, strong) DDPhotoModel *photoModel;
@@ -27,6 +28,7 @@
 @property (nonatomic, strong) DDPhotoDescView *photoDescView;
 @property (nonatomic, strong) DDBottomView *bottomView;
 
+@property (nonatomic, strong) MBProgressHUD *hud;
 @property (nonatomic, assign) BOOL isDisappear;
 @property (nonatomic, assign) NSInteger currentIndex;
 @end
@@ -201,10 +203,8 @@ static int temp = -1;
 		
 		// 保存到相册回调
 		_bottomView.downloadBlock = ^{
-			NSLog(@"保存到相册");
+			weakSelf.hud = [MBProgressHUD showHUDAddedTo:weakSelf.view animated:YES];
 			// 先获取图片
-//			NSLog(@"%zd", _currentIndex);
-//			NSLog(@"%@", weakSelf.imageScrollView.subviews[_currentIndex]);
 			DDPhotoScrollView *scrollView = weakSelf.imageScrollView.subviews[weakSelf.currentIndex];
 			UIImageWriteToSavedPhotosAlbum(scrollView.imageView.image, weakSelf, @selector(image:didFinishSavingWithError:contextInfo:), nil);
 		};
@@ -224,21 +224,29 @@ static int temp = -1;
 	return UIStatusBarStyleLightContent;
 }
 
+// 成功保存图片到相册中, 必须调用此方法, 否则会报参数越界错误
+- (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo{
+	if (!error) {
+		NSLog(@"error");
+		_hud.mode = MBProgressHUDModeCustomView;
+		_hud.label.text = @"保存成功！";
+		dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+			[_hud hideAnimated:YES];
+		});
+	} else {
+		_hud.mode = MBProgressHUDModeCustomView;
+		_hud.label.text = @"保存失败！";
+		dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+			[_hud hideAnimated:YES];
+		});
+	}
+}
+
 - (void)dealloc
 {
 	NSLog(@"!!!!!");
 	temp = -1;
 	[self removeObserver:self forKeyPath:@"currentPage"];
-}
-
-// 成功保存图片到相册中, 必须调用此方法, 否则会报参数越界错误
-- (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo{
-	NSLog(@"%s", __func__);
-	if (error) {
-//		[SVProgressHUD showErrorWithStatus:@"保存失败"];
-//		[SVProgressHUD showSuccessWithStatus:@"保存成功"];
-		NSLog(@"error");
-	}
 }
 
 @end
