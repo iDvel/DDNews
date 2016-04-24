@@ -11,7 +11,6 @@
 #import "UIImageView+WebCache.h"
 
 @interface DDPhotoScrollView () <UIScrollViewDelegate>
-@property (nonatomic, strong) UIImageView *imageView;
 @end
 
 @implementation DDPhotoScrollView

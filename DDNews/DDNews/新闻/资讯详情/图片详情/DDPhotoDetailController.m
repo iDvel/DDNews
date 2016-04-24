@@ -28,6 +28,7 @@
 @property (nonatomic, strong) DDBottomView *bottomView;
 
 @property (nonatomic, assign) BOOL isDisappear;
+@property (nonatomic, assign) NSInteger currentIndex;
 @end
 
 @implementation DDPhotoDetailController
@@ -83,6 +84,8 @@ static int temp = -1;
 		return;
 	} else {
 		temp = newIndex;
+		// 记录一下，供别处使用
+		_currentIndex = newIndex;
 	}
 	
 	// 如果已经消失了，就不展现描述文本了。
@@ -200,6 +203,10 @@ static int temp = -1;
 		_bottomView.downloadBlock = ^{
 			NSLog(@"保存到相册");
 			// 先获取图片
+//			NSLog(@"%zd", _currentIndex);
+//			NSLog(@"%@", weakSelf.imageScrollView.subviews[_currentIndex]);
+			DDPhotoScrollView *scrollView = weakSelf.imageScrollView.subviews[weakSelf.currentIndex];
+			UIImageWriteToSavedPhotosAlbum(scrollView.imageView.image, weakSelf, @selector(image:didFinishSavingWithError:contextInfo:), nil);
 		};
 		
 	}
@@ -222,6 +229,16 @@ static int temp = -1;
 	NSLog(@"!!!!!");
 	temp = -1;
 	[self removeObserver:self forKeyPath:@"currentPage"];
+}
+
+// 成功保存图片到相册中, 必须调用此方法, 否则会报参数越界错误
+- (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo{
+	NSLog(@"%s", __func__);
+	if (error) {
+//		[SVProgressHUD showErrorWithStatus:@"保存失败"];
+//		[SVProgressHUD showSuccessWithStatus:@"保存成功"];
+		NSLog(@"error");
+	}
 }
 
 @end
