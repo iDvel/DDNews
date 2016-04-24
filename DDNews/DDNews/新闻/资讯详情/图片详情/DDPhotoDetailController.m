@@ -131,7 +131,7 @@ static int temp = -1;
 			photoScrollView.singleTapBlock = ^{
 				NSLog(@"tap~");
 				// 如果已经消失，就出现
-				if (_isDisappear == YES) {
+				if (weakSelf.isDisappear == YES) {
 					[weakSelf.view.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
 						if (![obj isKindOfClass:[JT3DScrollView class]]) {
 							[UIView animateWithDuration:0.5 animations:^{
@@ -142,7 +142,7 @@ static int temp = -1;
 							}];
 						}
 					}];
-					_isDisappear = NO;
+					weakSelf.isDisappear = NO;
 					return;
 				} else { // 消失
 					[weakSelf.view.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -155,7 +155,7 @@ static int temp = -1;
 							}];
 						}
 					}];
-					_isDisappear = YES;
+					weakSelf.isDisappear = YES;
 				}
 				
 			};
