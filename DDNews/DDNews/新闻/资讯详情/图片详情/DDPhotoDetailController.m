@@ -79,8 +79,11 @@ static int temp = -1;
 	int newIndex = [change[@"new"] intValue];
 	
 	// 防止玩命赋值，只有发生变化了才进行下一步操作。
-	if (temp == newIndex) {return;}
-	temp = newIndex;
+	if (temp == newIndex) {
+		return;
+	} else {
+		temp = newIndex;
+	}
 	
 	// 如果已经消失了，就不展现描述文本了。
 	NSLog(@"_isDisappear = %zd", _isDisappear);
@@ -142,8 +145,7 @@ static int temp = -1;
 							}];
 						}
 					}];
-					weakSelf.isDisappear = NO;
-					return;
+					weakSelf.isDisappear = NO;	
 				} else { // 消失
 					[weakSelf.view.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
 						if (![obj isKindOfClass:[JT3DScrollView class]]) {
@@ -171,7 +173,7 @@ static int temp = -1;
 		_bottomView = [[NSBundle mainBundle] loadNibNamed:@"DDBottomView" owner:nil options:nil].lastObject;
 		_bottomView.frame = CGRectMake(0, ScrH - 40, ScrW, 40);
 		
-//		[_bottomView.commentCount setTitle:[NSString stringWithFormat:@" %zd", self.replyCount] forState:UIControlStateNormal];
+		[_bottomView.commentCount setTitle:[NSString stringWithFormat:@" %zd", self.replyCount] forState:UIControlStateNormal];
 		
 		__weak typeof(self) weakSelf = self;
 		// 返回回调
@@ -197,7 +199,7 @@ static int temp = -1;
 		// 保存到相册回调
 		_bottomView.downloadBlock = ^{
 			NSLog(@"保存到相册");
-			
+			// 先获取图片
 		};
 		
 	}

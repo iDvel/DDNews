@@ -16,7 +16,7 @@
 
 - (void)awakeFromNib
 {
-	[self.commentCount setTitle:@" 23148" forState:UIControlStateNormal];
+//	[self.commentCount setTitle:@" 23148" forState:UIControlStateNormal];
 }
 
 - (IBAction)backBtn:(id)sender
