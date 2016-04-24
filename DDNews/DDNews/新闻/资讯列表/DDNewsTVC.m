@@ -147,6 +147,7 @@
 		// NSLog(@"newsModel.url = %@", newsModel.url); // http://3g.163.com/ntes/16/0315/21/BI7TE54L00963VRO.html
 		// NSLog(@"newsModel.docid = %@", newsModel.docid); // BI7TE54L00963VRO
 		DDNewsDetailController *NewsDetailC = [[DDNewsDetailController alloc] initWithUrlString:newsModel.url];
+		NewsDetailC.hidesBottomBarWhenPushed = YES;
 		[self.navigationController pushViewController:NewsDetailC animated:YES];
 	}
 }
@@ -185,8 +186,9 @@
 			//			NSLog(@"str = %@", str); // 成功获取到http://3g.163.com/money/16/0317/17/
 			NSString *finalStr = [NSString stringWithFormat:@"%@%@.html", str, url]; // 拼接完成
 			
-			DDNewsDetailController *webVC = [[DDNewsDetailController alloc] initWithUrlString:finalStr];
-			[self.navigationController pushViewController:webVC animated:YES];
+			DDNewsDetailController *NewsDetailC = [[DDNewsDetailController alloc] initWithUrlString:finalStr];
+			NewsDetailC.hidesBottomBarWhenPushed = YES;
+			[self.navigationController pushViewController:NewsDetailC animated:YES];
 		}
 	};
 }

@@ -91,7 +91,7 @@ static int temp = -1;
 	}
 	
 	// 如果已经消失了，就不展现描述文本了。
-	NSLog(@"_isDisappear = %zd", _isDisappear);
+//	NSLog(@"_isDisappear = %zd", _isDisappear);
 	if (_isDisappear == YES) {return;}
 	
 	DDPhotoDetailModel *detailModel = _photoModel.photos[newIndex];
@@ -241,7 +241,7 @@ static int temp = -1;
 	if (!error) {
 		NSLog(@"error");
 		_hud.mode = MBProgressHUDModeText;
-		_hud.label.text = @"保存成功！";
+		_hud.label.text = @"图片已保存至相册！";
 		[_hud hideAnimated:YES afterDelay:1];
 	} else {
 		_hud.mode = MBProgressHUDModeText;
@@ -252,7 +252,7 @@ static int temp = -1;
 
 - (void)dealloc
 {
-	NSLog(@"!!!!!");
+//	NSLog(@"对咯");
 	temp = -1;
 	[self removeObserver:self forKeyPath:@"currentPage"];
 }

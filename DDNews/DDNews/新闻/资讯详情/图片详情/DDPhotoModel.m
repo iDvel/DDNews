@@ -25,7 +25,7 @@
 	NSString *str = [photosetID substringFromIndex:4]; // 0001|107920
 	NSArray *arr = [str componentsSeparatedByString:@"|"]; // @[@"0001", @"107920"]
 	NSString *urlString = [NSString stringWithFormat:@"http://c.m.163.com/photo/api/set/%@/%@.json", arr[0], arr[1]];
-	NSLog(@"urlString = %@", urlString);
+//	NSLog(@"urlString = %@", urlString);
 	[[DDNetworkTool sharedTool] GET:urlString parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, NSDictionary *responseObject) {
 		DDPhotoModel *photoModel = [self photoModelWithDict:responseObject];
 		complection(photoModel);
