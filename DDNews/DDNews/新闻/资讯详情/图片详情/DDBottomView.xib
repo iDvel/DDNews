@@ -19,13 +19,9 @@
                     <state key="normal" image="comment_download">
                         <color key="titleColor" red="0.99321546052631571" green="0.0" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
                     </state>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cYW-CK-d2v">
-                    <rect key="frame" x="275" y="0.0" width="40" height="40"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="40" id="2El-LC-1v6"/>
-                    </constraints>
-                    <state key="normal" image="comment_ collect"/>
+                    <connections>
+                        <action selector="downloadClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="HgE-Fu-1eY"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0nI-ER-AI8">
                     <rect key="frame" x="40" y="0.0" width="24" height="40"/>
@@ -33,6 +29,9 @@
                     <state key="normal" title=" 0" image="comment_button">
                         <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
+                    <connections>
+                        <action selector="commentCountClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="nUr-Pe-Bar"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dOT-NZ-Dgk">
                     <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
@@ -40,6 +39,9 @@
                         <constraint firstAttribute="width" constant="40" id="qUB-3r-KXQ"/>
                     </constraints>
                     <state key="normal" image="comment_leftArrow"/>
+                    <connections>
+                        <action selector="backBtn:" destination="iN0-l3-epB" eventType="touchUpInside" id="I9U-T5-kMt"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9A8-4b-lxN">
                     <rect key="frame" x="215" y="0.0" width="40" height="40"/>
@@ -47,6 +49,19 @@
                         <constraint firstAttribute="width" constant="40" id="qXc-y8-aod"/>
                     </constraints>
                     <state key="normal" image="comment_comment"/>
+                    <connections>
+                        <action selector="writeClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="1hS-xw-taC"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cYW-CK-d2v">
+                    <rect key="frame" x="275" y="0.0" width="40" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="40" id="2El-LC-1v6"/>
+                    </constraints>
+                    <state key="normal" image="comment_ collect"/>
+                    <connections>
+                        <action selector="collecClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="OUT-Ic-fS9"/>
+                    </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -69,6 +84,9 @@
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="commentCount" destination="0nI-ER-AI8" id="lcR-mB-96t"/>
+            </connections>
             <point key="canvasLocation" x="460.5" y="371"/>
         </view>
     </objects>

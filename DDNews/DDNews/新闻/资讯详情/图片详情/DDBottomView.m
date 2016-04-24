@@ -8,14 +8,50 @@
 
 #import "DDBottomView.h"
 
+@interface DDBottomView ()
+
+@end
+
 @implementation DDBottomView
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
+- (void)awakeFromNib
+{
+	[self.commentCount setTitle:@" 23148" forState:UIControlStateNormal];
 }
-*/
+
+- (IBAction)backBtn:(id)sender
+{
+	if (self.backBtnBlock) {
+		self.backBtnBlock();
+	}
+}
+
+- (IBAction)commentCountClick:(id)sender
+{
+	if (self.commentCountBlock) {
+		self.commentCountBlock();
+	}
+}
+
+- (IBAction)writeClick:(UIButton *)sender
+{
+	if (self.writeBlock) {
+		self.writeBlock();
+	}
+}
+
+- (IBAction)collecClick:(id)sender
+{
+	if (self.collectBlock) {
+		self.collectBlock();
+	}
+}
+
+- (IBAction)downloadClick:(id)sender
+{
+	if (self.downloadBlock) {
+		self.downloadBlock();
+	}
+}
 
 @end

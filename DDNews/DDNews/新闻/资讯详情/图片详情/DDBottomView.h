@@ -9,5 +9,15 @@
 #import <UIKit/UIKit.h>
 
 @interface DDBottomView : UIView
-
+@property (weak, nonatomic) IBOutlet UIButton *commentCount;
+/** 返回按钮Block回调 */
+@property (nonatomic, copy) void(^backBtnBlock)();
+/** commentCount按钮Block回调 */
+@property (nonatomic, copy) void(^commentCountBlock)();
+/** write按钮Block回调 */
+@property (nonatomic, copy) void(^writeBlock)();
+/** 收藏按钮Block回调 */
+@property (nonatomic, copy) void(^collectBlock)();
+/** download按钮Block回调 */
+@property (nonatomic, copy) void(^downloadBlock)();
 @end

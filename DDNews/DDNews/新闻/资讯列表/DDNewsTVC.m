@@ -139,6 +139,7 @@
 	DDNewsModel *newsModel = self.dataList[indexPath.row];
 	if (newsModel.photosetID) {
 		DDPhotoDetailController *photoVC = [[DDPhotoDetailController alloc] initWithPhotosetID:newsModel.photosetID];
+		photoVC.replyCount = newsModel.replyCount;
 		photoVC.wantsNavigationBarVisible = NO;
 		photoVC.hidesBottomBarWhenPushed = YES;
 		[self.navigationController pushViewController:photoVC animated:YES];
@@ -167,6 +168,7 @@
 		NSString *url = newsModel.ads[idx][@"url"];
 		if ([tag isEqualToString:@"photoset"]) {
 			DDPhotoDetailController *photoVC = [[DDPhotoDetailController alloc] initWithPhotosetID:url];
+			photoVC.replyCount = newsModel.replyCount;
 			photoVC.wantsNavigationBarVisible = NO;
 			photoVC.hidesBottomBarWhenPushed = YES;
 			[self.navigationController pushViewController:photoVC animated:YES];

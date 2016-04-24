@@ -10,4 +10,7 @@
 
 @interface DDPhotoDetailController : UIViewController
 - (instancetype)initWithPhotosetID:(NSString *)photosetID;
+/** 跟贴数 */
+@property (nonatomic, assign) int replyCount;
+
 @end

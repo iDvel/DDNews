@@ -58,6 +58,7 @@
 {
 	_photoModel = photoModel;
 	[self.view insertSubview:self.imageScrollView belowSubview:self.backButton];
+//
 	[self addObserver:self forKeyPath:@"currentPage" options:NSKeyValueObservingOptionOld|NSKeyValueObservingOptionNew|NSKeyValueObservingOptionInitial context:nil];
 }
 
@@ -82,6 +83,7 @@ static int temp = -1;
 	temp = newIndex;
 	
 	// 如果已经消失了，就不展现描述文本了。
+	NSLog(@"_isDisappear = %zd", _isDisappear);
 	if (_isDisappear == YES) {return;}
 	
 	DDPhotoDetailModel *detailModel = _photoModel.photos[newIndex];
@@ -141,7 +143,7 @@ static int temp = -1;
 						}
 					}];
 					_isDisappear = NO;
-//					return;
+					return;
 				} else { // 消失
 					[weakSelf.view.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
 						if (![obj isKindOfClass:[JT3DScrollView class]]) {
@@ -168,6 +170,36 @@ static int temp = -1;
 	if (_bottomView == nil) {
 		_bottomView = [[NSBundle mainBundle] loadNibNamed:@"DDBottomView" owner:nil options:nil].lastObject;
 		_bottomView.frame = CGRectMake(0, ScrH - 40, ScrW, 40);
+		
+//		[_bottomView.commentCount setTitle:[NSString stringWithFormat:@" %zd", self.replyCount] forState:UIControlStateNormal];
+		
+		__weak typeof(self) weakSelf = self;
+		// 返回回调
+		_bottomView.backBtnBlock = ^{
+			[weakSelf.navigationController popViewControllerAnimated:YES];
+		};
+		
+		// 跟帖数回调
+		_bottomView.commentCountBlock = ^{
+			NSLog(@"跟帖数");
+		};
+		
+		// 评论回调
+		_bottomView.writeBlock = ^{
+			NSLog(@"写评论");
+		};
+		
+		//收藏回调
+		_bottomView.collectBlock = ^{
+			NSLog(@"收藏");
+		};
+		
+		// 保存到相册回调
+		_bottomView.downloadBlock = ^{
+			NSLog(@"保存到相册");
+			
+		};
+		
 	}
 	return _bottomView;
 }
@@ -185,6 +217,7 @@ static int temp = -1;
 
 - (void)dealloc
 {
+	NSLog(@"!!!!!");
 	temp = -1;
 	[self removeObserver:self forKeyPath:@"currentPage"];
 }
