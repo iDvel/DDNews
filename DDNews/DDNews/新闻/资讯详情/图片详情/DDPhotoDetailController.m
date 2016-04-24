@@ -74,7 +74,7 @@ static int temp = -1;
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context
 {
 	// 获取新旧索引
-	int oldIndex = [change[@"old"] intValue];
+//	int oldIndex = [change[@"old"] intValue]; // 暂时没用到，想用来写图片大小恢复的。
 	int newIndex = [change[@"new"] intValue];
 	
 	// 防止玩命赋值，只有发生变化了才进行下一步操作。
@@ -82,7 +82,6 @@ static int temp = -1;
 	temp = newIndex;
 	
 	// 如果已经消失了，就不展现描述文本了。
-	NSLog(@"````%zd", _isDisappear);
 	if (_isDisappear == YES) {return;}
 	
 	DDPhotoDetailModel *detailModel = _photoModel.photos[newIndex];
@@ -142,7 +141,7 @@ static int temp = -1;
 						}
 					}];
 					_isDisappear = NO;
-					return;
+//					return;
 				} else { // 消失
 					[weakSelf.view.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
 						if (![obj isKindOfClass:[JT3DScrollView class]]) {
