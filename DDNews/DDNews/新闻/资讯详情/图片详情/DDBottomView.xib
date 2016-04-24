@@ -12,63 +12,71 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OQE-BP-T9c">
-                    <rect key="frame" x="327" y="0.0" width="40" height="40"/>
+                    <rect key="frame" x="335" y="0.0" width="40" height="40"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="40" id="LVV-Ti-f63"/>
+                        <constraint firstAttribute="width" constant="40" id="d10-Y5-EWh"/>
                     </constraints>
-                    <state key="normal" image="img_download"/>
+                    <state key="normal" image="comment_download">
+                        <color key="titleColor" red="0.99321546052631571" green="0.0" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
+                    </state>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cYW-CK-d2v">
-                    <rect key="frame" x="284" y="1" width="40" height="40"/>
+                    <rect key="frame" x="275" y="0.0" width="40" height="40"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="40" id="094-SN-ajX"/>
-                        <constraint firstAttribute="height" constant="40" id="XKb-s5-xcu"/>
+                        <constraint firstAttribute="width" constant="40" id="2El-LC-1v6"/>
                     </constraints>
-                    <state key="normal" image="share_button"/>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zon-OC-qBa">
-                    <rect key="frame" x="8" y="3.5" width="171" height="33"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                    <state key="normal" title="         写跟帖" backgroundImage="comment_text_field">
-                        <color key="titleColor" cocoaTouchSystemColor="lightTextColor"/>
-                    </state>
+                    <state key="normal" image="comment_ collect"/>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0nI-ER-AI8">
-                    <rect key="frame" x="187" y="1" width="89" height="40"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="89" id="wka-vZ-1gx"/>
-                    </constraints>
+                    <rect key="frame" x="40" y="0.0" width="24" height="40"/>
                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                    <state key="normal" title=" 21345" image="comment_button">
+                    <state key="normal" title=" 0" image="comment_button">
                         <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dOT-NZ-Dgk">
+                    <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="40" id="qUB-3r-KXQ"/>
+                    </constraints>
+                    <state key="normal" image="comment_leftArrow"/>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9A8-4b-lxN">
+                    <rect key="frame" x="215" y="0.0" width="40" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="40" id="qXc-y8-aod"/>
+                    </constraints>
+                    <state key="normal" image="comment_comment"/>
                 </button>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="OQE-BP-T9c" secondAttribute="bottom" id="Ej3-Cf-G4f"/>
-                <constraint firstItem="0nI-ER-AI8" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="1" id="F0F-N0-M34"/>
-                <constraint firstAttribute="trailing" secondItem="OQE-BP-T9c" secondAttribute="trailing" constant="8" id="SWS-6E-fZL"/>
-                <constraint firstAttribute="bottom" secondItem="cYW-CK-d2v" secondAttribute="bottom" constant="-1" id="ZE6-0f-HPU"/>
-                <constraint firstItem="0nI-ER-AI8" firstAttribute="leading" secondItem="Zon-OC-qBa" secondAttribute="trailing" constant="8" id="agQ-7h-Aaa"/>
-                <constraint firstAttribute="bottom" secondItem="Zon-OC-qBa" secondAttribute="bottom" constant="3.5" id="bpW-Ym-W93"/>
-                <constraint firstAttribute="bottom" secondItem="0nI-ER-AI8" secondAttribute="bottom" constant="-1" id="btB-su-9zp"/>
-                <constraint firstItem="Zon-OC-qBa" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="dLU-V8-3yN"/>
-                <constraint firstItem="cYW-CK-d2v" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="1" id="epm-9P-TNG"/>
-                <constraint firstItem="OQE-BP-T9c" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="l8N-S0-3XA"/>
-                <constraint firstItem="Zon-OC-qBa" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="3.5" id="vst-15-Msh"/>
-                <constraint firstItem="OQE-BP-T9c" firstAttribute="leading" secondItem="cYW-CK-d2v" secondAttribute="trailing" constant="3" id="xNn-NZ-v5s"/>
-                <constraint firstItem="cYW-CK-d2v" firstAttribute="leading" secondItem="0nI-ER-AI8" secondAttribute="trailing" constant="8" id="z7a-7m-POR"/>
+                <constraint firstAttribute="bottom" secondItem="9A8-4b-lxN" secondAttribute="bottom" id="0ct-15-8EF"/>
+                <constraint firstAttribute="bottom" secondItem="0nI-ER-AI8" secondAttribute="bottom" id="4e0-IG-y5C"/>
+                <constraint firstAttribute="trailing" secondItem="OQE-BP-T9c" secondAttribute="trailing" id="BR2-jU-qAr"/>
+                <constraint firstItem="cYW-CK-d2v" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="LV9-VB-QZW"/>
+                <constraint firstAttribute="bottom" secondItem="OQE-BP-T9c" secondAttribute="bottom" id="Maz-yc-PvT"/>
+                <constraint firstItem="dOT-NZ-Dgk" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Qel-ey-aMw"/>
+                <constraint firstItem="0nI-ER-AI8" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Qxd-dr-DWL"/>
+                <constraint firstAttribute="bottom" secondItem="cYW-CK-d2v" secondAttribute="bottom" id="Ru4-q6-42g"/>
+                <constraint firstItem="OQE-BP-T9c" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="W9A-rD-xMI"/>
+                <constraint firstItem="0nI-ER-AI8" firstAttribute="leading" secondItem="dOT-NZ-Dgk" secondAttribute="trailing" id="YhS-zX-enf"/>
+                <constraint firstItem="9A8-4b-lxN" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="fJd-1O-Xqk"/>
+                <constraint firstItem="cYW-CK-d2v" firstAttribute="leading" secondItem="9A8-4b-lxN" secondAttribute="trailing" constant="20" id="jV2-by-v8m"/>
+                <constraint firstItem="OQE-BP-T9c" firstAttribute="leading" secondItem="cYW-CK-d2v" secondAttribute="trailing" constant="20" id="qRb-UL-JX3"/>
+                <constraint firstItem="dOT-NZ-Dgk" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="rSp-u5-Cts"/>
+                <constraint firstAttribute="bottom" secondItem="dOT-NZ-Dgk" secondAttribute="bottom" id="roR-yv-ziu"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="385.5" y="352"/>
+            <point key="canvasLocation" x="460.5" y="371"/>
         </view>
     </objects>
     <resources>
+        <image name="comment_ collect" width="20" height="20"/>
         <image name="comment_button" width="13" height="13"/>
-        <image name="comment_text_field" width="42" height="35"/>
-        <image name="img_download" width="14" height="17"/>
-        <image name="share_button" width="15" height="15"/>
+        <image name="comment_comment" width="22" height="22"/>
+        <image name="comment_download" width="20" height="20"/>
+        <image name="comment_leftArrow" width="20" height="20"/>
     </resources>
 </document>
